@@ -1,0 +1,29 @@
+<article class="article-detail">
+    <header class="article-header">
+        <h2>{{ article?.title }}</h2>
+    </header>
+
+    <div class="article-image">
+        <img src="{{ article?.photo }}" alt="Image de l'article">
+    </div>
+
+    
+
+    <div class="article-content">
+        <p>{{ article?.content }}</p>
+    </div>
+
+    <div class="article-meta">
+        <p>Publié par <b>{{ article?.auteur }}</b> • {{ article?.date_creation }}</p>
+    </div>
+
+    <!-- <div class="article-categories">
+        <strong>Catégories :</strong>
+        @for (category of article?.categories; track $index) {
+            <span class="category">{{ category }} | </span>
+        }
+        
+    </div> -->
+    <p><a href="#" class="btn">Retour aux articles</a></p>
+   
+</article>

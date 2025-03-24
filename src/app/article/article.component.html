@@ -1,0 +1,27 @@
+<article class="article-card">
+    <div class="row align-items-center">
+        <!-- Image -->
+        <div class="col-md-3 col-12 image-container">
+            <img src="{{article.photo}}" alt="Image de l'article" class="img-fluid rounded">
+        </div>
+
+        <!-- Contenu de l'article -->
+        <div class="col-md-7 col-12 content">
+            <h3>{{article.title}}</h3>
+            <!-- <p class="categories">
+                <span class="badge">{{article.categories[0]}}</span>
+                <span class="badge">{{article.categories[1]}}</span>
+            </p> -->
+            <p class="slug">{{article.slug}}</p>
+            <p class="author">
+                <i>Publié par <b>{{article.auteur}}</b> le {{article.date_creation}}</i>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="col-12 d-flex justify-content-between align-items-center footer">
+            <!-- <p class="gray">{{article.nb_comments}} commentaires</p> -->
+            <a  [routerLink]="['/article', article.id]"  class="btn">Voir plus</a>
+        </div>
+    </div>
+</article>
