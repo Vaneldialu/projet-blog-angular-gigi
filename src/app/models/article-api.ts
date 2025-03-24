@@ -1,3 +1,5 @@
+import { Category } from "./category";
+
 export interface ArticleApi {
       id: number,
       title: string,
@@ -5,6 +7,8 @@ export interface ArticleApi {
       photo: string,
       auteur: string,
       content: string,
+      nbr_comment: number,
+      category: Category[],
       date_creation: string,
-      last_modif: string
+      last_modif: string,
 }
