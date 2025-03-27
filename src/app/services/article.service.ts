@@ -1,21 +1,51 @@
-import { Injectable } from '@angular/core';
-import { ArticleApi } from '../models/article-api';
-import { response } from 'express';
+import {Injectable} from '@angular/core';
+import {ArticleApi} from '../models/article-api';
+import {response} from 'express';
+import {throws} from 'node:assert';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ArticleService {
+
   articles: ArticleApi[] = [];
 
   //avec resource en collection
   async getAll(): Promise<ArticleApi[]> {
     return fetch('http://127.0.0.1:8000/api/articles')
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+      .then(response => {
+        if (response.status === 200) {
+          return response.json()
+        }
+        return new Error('erreujrrrrrrrr')
+      })
+      .then(data => {
         return data.data;
+      }).catch(err => {
+        console.log(err)
       });
+  }
+
+  async createArticle(data: {
+    title: string,
+    content: string,
+    categories: number[],
+    photo: string,
+    auteur: string,
+  }) {
+
+    console.log(data)
+    return fetch('http://127.0.0.1:8000/api/articles', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => response.json())
+      .then(d => {
+        console.log(d)
+      })
+
   }
 
   //Sans resource en collection
@@ -24,13 +54,14 @@ export class ArticleService {
   //   return data
   // }
 
-  //   getOne(id: number): ArticleApi | undefined {
-  //     return this.articles.find(article => article.id === id)!;
-  //   }
+//   getOne(id: number): ArticleApi | undefined {
+//     return this.articles.find(article => article.id === id)!;
+//   }
 
   async getOne(id: number): Promise<ArticleApi | undefined> {
     return fetch(`http://127.0.0.1:8000/api/articles/${id}`)
-      .then((response) => response.json())
-      .then((data) => data.data);
+      .then(response => response.json())
+      .then(data => data.data);
   }
+
 }
