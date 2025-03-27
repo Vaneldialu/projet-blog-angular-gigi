@@ -1,13 +1,35 @@
-<header>
-    <div class="logo">
-        <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/21_Angular_logo_logos-512.png" alt="">
-
+<header class="w-full bg-white shadow-md">
+  <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+    
+    <!-- Logo -->
+    <div class="flex items-center">
+      <img 
+        src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/21_Angular_logo_logos-512.png" 
+        alt="Angular Logo" 
+        class="w-14 h-14"
+      >
     </div>
-    <nav>
-        <ul>
-            <li><a [routerLink]="['/']">Articles</a></li>
-            <li><a [routerLink]="['/categories']">Category</a></li>
-        </ul>
-    </nav>
-</header>
 
+    <!-- Navigation -->
+    <nav>
+      <ul class="flex space-x-8">
+        <li>
+          <a [routerLink]="['/articles']" class="text-gray-700 hover:text-red-500 transition font-medium">
+            Articles
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/categories']" class="text-gray-700 hover:text-red-500 transition font-medium">
+            Categories
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/']" class="text-gray-700 hover:text-red-500 transition font-medium">
+            Login
+          </a>
+        </li>
+      </ul>
+    </nav>
+    
+  </div>
+</header>
