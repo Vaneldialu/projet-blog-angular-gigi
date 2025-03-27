@@ -1,7 +1,6 @@
 <header class="w-full bg-white shadow-md">
   <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
     
-    <!-- Logo -->
     <div class="flex items-center">
       <img 
         src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/21_Angular_logo_logos-512.png" 
@@ -10,8 +9,7 @@
       >
     </div>
 
-    <!-- Navigation -->
-    <nav>
+    <nav *ngIf="isConnected">
       <ul class="flex space-x-8">
         <li>
           <a [routerLink]="['/articles']" class="text-gray-700 hover:text-red-500 transition font-medium">
@@ -20,16 +18,28 @@
         </li>
         <li>
           <a [routerLink]="['/categories']" class="text-gray-700 hover:text-red-500 transition font-medium">
-            Categories
+            Catégories
           </a>
         </li>
         <li>
-          <a [routerLink]="['/']" class="text-gray-700 hover:text-red-500 transition font-medium">
-            Login
+          <a (click)="deconnexion()" class="cursor-pointer text-gray-700 hover:text-red-500 transition font-medium">
+            Déconnexion
+          </a>
+        </li>
+        <li>
+          <button class="text-gray-700 hover:text-red-500 transition font-medium">{{name}}</button>
+        </li>
+      </ul>
+    </nav>
+    <nav *ngIf="!isConnected">
+      <ul class="flex space-x-8">
+        <li>
+          <a [routerLink]="['/register']" class="text-gray-700 hover:text-red-500 transition font-medium">
+            Register
           </a>
         </li>
       </ul>
     </nav>
-    
+
   </div>
 </header>
