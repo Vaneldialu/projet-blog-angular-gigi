@@ -9,44 +9,46 @@ import { NgIf } from '@angular/common';
   selector: 'app-login',
   imports: [ReactiveFormsModule, NgIf],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  route:Router = inject(Router)
-  service:UserService = inject(UserService)
-  isConnected :boolean = false
-  isOpenError :boolean = false
-
+  route: Router = inject(Router);
+  service: UserService = inject(UserService);
+  isConnected: boolean = false;
+  isOpenError: boolean = false;
 
   loginForm = new FormGroup({
-    email : new FormControl(""),
-    password : new FormControl("")
-  })
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
 
-  connexion(){
-    this.service.loginApi(
-      this.loginForm.value.email??null,
-      this.loginForm.value.password??null
-    ).then((userApi:User) => {
-      if(userApi.name !== null){
-        localStorage.setItem("token", userApi.token)
-        localStorage.setItem("name", userApi.name)
-        localStorage.setItem("name", userApi.name)
-        this.isConnected = true
-        this.route.navigate(['/articles'])
-      }
-      else{
-        this.isOpenError = true
-      }
-      
-    }).then(()=>{
-      if(!this.isConnected){
-        this.route.navigate(['/'])
-      }
-    })
+  login() {
+    this.service
+      .loginUser(
+        this.loginForm.value.email ?? '',
+        this.loginForm.value.password ?? ''
+      )
+      .then((response: User) => {
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('nom', response.name);
+          alert('connexion reussie '); //  Affichage du toast vert
+
+          setTimeout(() => {
+            this.route.navigate(['/articles']).then(() => {
+              window.location.reload();
+            });
+          }, 3000);
+        } else {
+          alert('email ou mot de passe incorrect');
+        }
+      })
+      .catch(() => {
+        alert('Une erreur est survenue ');
+      });
   }
 
-  close(){
-    this.isOpenError = false
+  close() {
+    this.isOpenError = false;
   }
 }
