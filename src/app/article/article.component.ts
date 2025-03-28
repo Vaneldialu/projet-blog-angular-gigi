@@ -19,6 +19,8 @@ export class ArticleComponent {
 
   async onLike() {
 
+    console.log(localStorage.getItem('token'))
+
     try {
       await this.articleService.likeArticle({
         articleId: this.article.id

@@ -4,6 +4,7 @@ import {ArticleService} from '../services/article.service';
 import {CategoryService} from '../services/category.service';
 import {Category} from '../models/category';
 import {formatDate, NgForOf, NgIf} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-article',
@@ -20,6 +21,8 @@ export class CreateArticleComponent {
 
   private articleService = inject(ArticleService)
   private categoryService = inject(CategoryService)
+  route: Router = inject(Router);
+
   errorMessage?: string
   successMessage?: string
 
@@ -54,10 +57,10 @@ export class CreateArticleComponent {
         content: this.formData.value.content ?? '',
         categories: this.formData.value.categories ?? []
       })
-      this.successMessage = "esaliiiiiiiiiiiiii"
       this.formData.reset()
+      await this.route.navigate(['/articles'])
     } catch (e) {
-      this.errorMessage = "Nini ngo kho remplir  formulaire bien"
+      this.errorMessage = "Veuillez remplir tous les champs obligatoires avant de soumettre le formulaire"
     }
 
   }
