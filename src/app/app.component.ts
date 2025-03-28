@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,8 @@ import { HeaderComponent } from './header/header.component';
 })
 export class AppComponent {
   title = 'blog-odc-exo';
+
+  constructor(private sanitizer: DomSanitizer) {
+    this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/YjgDUw_sbpY?start=650');
+}
 }

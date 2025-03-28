@@ -4,10 +4,13 @@ import { NgFor } from '@angular/common';
 import { ArticleService } from '../services/article.service';
 import { ArticleApi } from '../models/article-api';
 import { RouterLink } from '@angular/router';
+import { ArtcileVidComponent } from '../artcile-vid/artcile-vid.component';
+// import { ArtcileVidComponent, VideoComponent } from "../artcile-vid/artcile-vid.component";
+//import { VideoComponent } from "../video/video.component";
 
 @Component({
   selector: 'app-article-list',
-  imports: [ArticleComponent, NgFor, RouterLink],
+  imports: [ArticleComponent, NgFor, RouterLink, ArtcileVidComponent],
   templateUrl: './article-list.component.html',
   styleUrl: './article-list.component.css'
 })
