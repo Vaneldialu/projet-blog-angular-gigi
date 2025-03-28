@@ -1,5 +1,5 @@
 export interface User {
-  token: {
+  data: {
     id: number;
     name: string;
     email: string;

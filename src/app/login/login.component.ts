@@ -29,9 +29,9 @@ export class LoginComponent {
         this.loginForm.value.password ?? ''
       )
       .then((response: User) => {
-        if (response.token) {
-          localStorage.setItem('token', response.token.token);
-          localStorage.setItem('nom', response.token.name);
+        if (response.data) {
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('nom', response.data.name);
           alert('connexion reussie '); //  Affichage du toast vert
 
           setTimeout(() => {
