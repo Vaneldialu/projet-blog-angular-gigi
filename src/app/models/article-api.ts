@@ -9,6 +9,7 @@ export interface ArticleApi {
   auteur: string,
   content: string,
   nbr_comment: number,
+  nbr_vue: number,
   nb_likes: number,
   comments: Comment[],
   category: Category[],
