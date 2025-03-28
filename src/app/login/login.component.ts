@@ -30,8 +30,8 @@ export class LoginComponent {
       )
       .then((response: User) => {
         if (response.token) {
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('nom', response.name);
+          localStorage.setItem('token', response.token.token);
+          localStorage.setItem('nom', response.token.name);
           alert('connexion reussie '); //  Affichage du toast vert
 
           setTimeout(() => {
