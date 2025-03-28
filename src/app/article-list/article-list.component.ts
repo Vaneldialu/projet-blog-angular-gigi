@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component, inject } from '@angular/core';
 import { ArticleComponent } from '../article/article.component';
 import { NgFor } from '@angular/common';
@@ -8,14 +7,7 @@ import { RouterLink } from '@angular/router';
 import { ArtcileVidComponent } from '../artcile-vid/artcile-vid.component';
 // import { ArtcileVidComponent, VideoComponent } from "../artcile-vid/artcile-vid.component";
 //import { VideoComponent } from "../video/video.component";
-=======
-import {Component, inject} from '@angular/core';
-import {ArticleComponent} from '../article/article.component';
-import {NgFor} from '@angular/common';
-import {ArticleService} from '../services/article.service';
-import {ArticleApi} from '../models/article-api';
-import {RouterLink} from '@angular/router';
->>>>>>> 0090802fa29ff8aa93f5e6ea52242d0de5f4d429
+
 
 @Component({
   selector: 'app-article-list',

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <article class="bg-white shadow-md rounded-xl p-4 md:p-6 flex flex-col space-y-4 border-b border-gray-300 last:border-none">
     <div class="flex flex-col md:flex-row items-center gap-4">
       <!-- Image -->
@@ -13,24 +12,6 @@
         <!-- Catégories -->
         <div class="mt-2 flex flex-wrap gap-2">
           <span *ngFor="let category of article.category" class="bg-red-100 text-red-700 text-xs font-semibold px-2.5 py-1 rounded-full">
-=======
-<article
-  class="bg-white shadow-md rounded-xl p-4 md:p-6 flex flex-col space-y-4 border-b border-gray-300 last:border-none">
-  <div class="flex flex-col md:flex-row items-center gap-4">
-    <!-- Image -->
-    <div class="w-full md:w-1/4">
-      <img [src]="article.photo" alt="Image de l'article" class="w-full h-32 object-cover rounded-lg shadow-sm">
-    </div>
-
-    <!-- Contenu -->
-    <div class="flex-1">
-      <h3 class="text-xl font-semibold text-gray-900">{{ article.title }}</h3>
-
-      <!-- Catégories -->
-      <div class="mt-2 flex flex-wrap gap-2">
-          <span *ngFor="let category of article.category"
-                class="bg-red-100 text-red-700 text-xs font-semibold px-2.5 py-1 rounded-full">
->>>>>>> 0090802fa29ff8aa93f5e6ea52242d0de5f4d429
             {{ category.name }}
           </span>
       </div>
