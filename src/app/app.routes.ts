@@ -8,6 +8,7 @@ import { CreateCategoryComponent } from './create-category/create-category.compo
 import { CategoryListComponent } from './category-list/category-list.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 import { RegisterComponent } from './register/register.component';
+import { TagListComponent } from './tag-list/tag-list.component';
 
 export const routes: Routes = [
   {
@@ -42,4 +43,8 @@ export const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
+  {
+    path : 'tags',
+    component : TagListComponent
+  }
 ];

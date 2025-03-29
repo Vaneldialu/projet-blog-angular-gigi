@@ -1,0 +1,10 @@
+<br><br><br>
+<div class="flex justify-between items-center  pt-4">
+    <h1 class="text-3xl font-bold underline">Liste Tags</h1>
+    <a [routerLink]="['/create-tag']" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-red-700">
+        Ajouter un tag
+    </a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
+    <app-tag *ngFor="let tag of tags" [tag]="tag"></app-tag>
+</div>
