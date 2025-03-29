@@ -1,18 +1,19 @@
-import { Router } from '@angular/router';
-import { Category } from './../models/category';
-import { Component, inject } from '@angular/core';
-import { CategoryService } from '../services/category.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TagService } from '../services/tag.service';
+import { Router } from '@angular/router';
+
 
 @Component({
-  selector: 'app-create-category',
+  selector: 'app-create-tag',
   imports: [ReactiveFormsModule, NgIf],
-  templateUrl: './create-category.component.html',
-  styleUrl: './create-category.component.css'
+  templateUrl: './create-tag.component.html',
+  styleUrl: './create-tag.component.css'
 })
-export class CreateCategoryComponent {
-  service: CategoryService = inject(CategoryService);
+export class CreateTagComponent {
+
+  service: TagService = inject(TagService);
   route: Router = inject(Router);
 
   errorMessage?: string;
@@ -34,7 +35,7 @@ export class CreateCategoryComponent {
         const name = this.applyForm.get('name')?.value ?? '';
         const description = this.applyForm.get('description')?.value ?? '';
 
-        await this.service.storeCategory(name, description);
+        await this.service.storeTag(name, description);
 
         // Réinitialisation du formulaire et affichage du message
         this.applyForm.reset();
@@ -42,11 +43,11 @@ export class CreateCategoryComponent {
 
         // Redirection après 2 secondes
         setTimeout(() => {
-          this.route.navigate(['/categories']);
+          this.route.navigate(['/tags']);
         }, 2000);
       } catch (e) {
         this.isOpenGreen = true;
-        this.errorMessage = 'Une erreur est survenue lors de l\'enregistrement de la catégorie.';
+        this.errorMessage = 'Une erreur est survenue lors de l\'enregistrement du tag.';
       }
     } else {
       this.isOpenGreen = true;
@@ -57,5 +58,4 @@ export class CreateCategoryComponent {
   closeAlert() {
     this.isOpenGreen = false;
   }
- 
 }

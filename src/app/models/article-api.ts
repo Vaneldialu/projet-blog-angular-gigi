@@ -1,5 +1,6 @@
 import {Category} from "./category";
 import {Comment} from "./comment";
+import { Tag } from "./tag";
 
 export interface ArticleApi {
   id: number,
@@ -13,6 +14,7 @@ export interface ArticleApi {
   nb_likes: number,
   comments: Comment[],
   category: Category[],
+  tags: Tag[],
   date_creation: string,
   last_modif: string,
 }
