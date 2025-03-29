@@ -31,6 +31,7 @@ export class ArticleService {
     title: string,
     content: string,
     categories: number[],
+    tags: number[],
     photo: string,
     auteur: string,
   }) {
