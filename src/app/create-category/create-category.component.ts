@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
 import { Category } from './../models/category';
 import { Component, inject } from '@angular/core';
 import { CategoryService } from '../services/category.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -11,47 +12,50 @@ import { NgIf } from '@angular/common';
   styleUrl: './create-category.component.css'
 })
 export class CreateCategoryComponent {
-  service:CategoryService = inject(CategoryService)
-  category !: Category
-  isOpenGreen:boolean = false
-  isOpenError:boolean = false
+  service: CategoryService = inject(CategoryService);
+  route: Router = inject(Router);
 
-  //Creation de l'insertion
+  errorMessage?: string;
+  successMessage?: string;
+  isOpenGreen: boolean = false; 
+
   applyForm = new FormGroup({
-    name : new FormControl(""),
-    description : new FormControl("")
-  })
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    description: new FormControl('', [Validators.required]),
+  });
 
-  //sauver de l'insertion avec apis
-  saveCategory(){
-    this.service.storeCategory(
-      this.applyForm.value.name??"",
-      this.applyForm.value.description??""
-    ) 
-    .then((categoryApi:Category) => {
-      this.category = categoryApi
+  async onSubmitForm() {
+    this.successMessage = '';
+    this.errorMessage = '';
 
-    //Rajouter dans le tableau
-      this.service.categories.unshift(this.category)
-    })
+    if (this.applyForm.valid) {
+      try {
+        // Récupération des valeurs du formulaire
+        const name = this.applyForm.get('name')?.value ?? '';
+        const description = this.applyForm.get('description')?.value ?? '';
 
-    //Notification s'affiche apres insertion
-    this.isOpenGreen = true
+        await this.service.storeCategory(name, description);
 
+        // Réinitialisation du formulaire et affichage du message
+        this.applyForm.reset();
+        
 
-    //vider le formulaire
-    this.applyForm = new FormGroup({
-      name : new FormControl(""),
-      description : new FormControl("")
-    })
-  }
-  //Function pour fermer la notification
-  close(){
-    this.isOpenGreen = false
-  }
-
-  closeError(){
-    this.isOpenError = false
+        // Redirection après 2 secondes
+        setTimeout(() => {
+          this.route.navigate(['/categories']);
+        }, 2000);
+      } catch (e) {
+        this.isOpenGreen = true;
+        this.errorMessage = 'Une erreur est survenue lors de l\'enregistrement de la catégorie.';
+      }
+    } else {
+      this.isOpenGreen = true;
+      this.errorMessage = 'Veuillez remplir tous les champs obligatoires avant de soumettre le formulaire';
+    }
   }
 
+  closeAlert() {
+    this.isOpenGreen = false;
+  }
+ 
 }
