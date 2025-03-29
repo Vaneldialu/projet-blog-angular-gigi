@@ -27,21 +27,25 @@ export class TagService {
          
        }
   
-      async storeTag(nameParam:string, descriptionParam : string):Promise<Tag>{
-        const contact = {
-          name: nameParam,
-          description: descriptionParam
-        }
-    
-        let rep =  await fetch('http://127.0.0.1:8000/api/tags', {
-                  method: 'POST',
-                  body: JSON.stringify(contact),
-                  headers: {
-                    'Content-Type': 'application/json'
-                  }
-                })
-                .then(reponse => reponse.json())
-        return rep 
-      }
+      async storeTag(name: string, description: string): Promise<Tag> {
+            const tagData = {
+              name: name,
+              description: description
+            };
+          
+            const response = await fetch('http://127.0.0.1:8000/api/tags', {
+              method: 'POST',
+              body: JSON.stringify(tagData),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+          
+            if (!response.ok) {
+              throw new Error('Erreur lors de la création du tag');
+            }
+          
+            return await response.json();
+          }
   
 }
