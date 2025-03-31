@@ -7,6 +7,7 @@ import {formatDate, NgForOf, NgIf} from '@angular/common';
 import {Router} from '@angular/router';
 import { Tag } from '../models/tag';
 import { TagService } from '../services/tag.service';
+import { log } from 'console';
 
 @Component({
   selector: 'app-create-article',
@@ -38,7 +39,7 @@ export class CreateArticleComponent {
     auteur: new FormControl('', [Validators.required]),
     content: new FormControl('', [Validators.required, Validators.minLength(100)]),
     categories: new FormControl([],[Validators.required]),
-    tags : new FormControl([],[Validators.required])
+    tags : new FormControl([])
   })
 
   async ngOnInit() {
@@ -48,6 +49,8 @@ export class CreateArticleComponent {
 
   async getCategories() {
     this.categories = await this.categoryService.all()
+    console.log(this.categories);
+    
   }
 
   async getTags(){

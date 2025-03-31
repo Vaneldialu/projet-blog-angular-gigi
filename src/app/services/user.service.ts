@@ -1,17 +1,20 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { BASE_URL } from '../app.tokens';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  url = inject(BASE_URL);
+
   async loginUser(email: string, password: string): Promise<User> {
     const user = {
       email: email,
       password: password,
     };
 
-    let rep = await fetch('http://localhost:8000/api/login', {
+    let rep = await fetch(`${this.url}/api/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
 
@@ -34,7 +37,7 @@ export class UserService {
       password: password,
       password_confirmation: password_confirmation,
     };
-    let rep = await fetch('http://localhost:8000/api/register', {
+    let rep = await fetch(`${this.url}/api/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
