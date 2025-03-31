@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 export class CategoryService {
 
   categories : Category[] = []
+  url = "http://10.252.252.53:8000"
+
   
    // Création de la function getOne
      getOne(id: number):Category | undefined {
@@ -16,7 +18,7 @@ export class CategoryService {
    
      //Affichage avec fetch pour les api
      async all():Promise<Category[]>{
-       let rep = await fetch('http://127.0.0.1:8000/api/categories', {
+       let rep = await fetch(`${this.url}/api/categories`, {
          method: "GET",
          headers: {
            'Content-Type': 'application/json'
@@ -34,7 +36,7 @@ export class CategoryService {
         description: description
       };
     
-      const response = await fetch('http://127.0.0.1:8000/api/categories', {
+      const response = await fetch(`${this.url}/api/categories`, {
         method: 'POST',
         body: JSON.stringify(categoryData),
         headers: {
