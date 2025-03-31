@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { BASE_URL } from '../app.tokens';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  url = "http://10.252.252.53:8000"
+  url = inject(BASE_URL);
 
   async loginUser(email: string, password: string): Promise<User> {
     const user = {
