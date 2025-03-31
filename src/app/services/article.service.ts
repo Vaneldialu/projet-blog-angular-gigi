@@ -31,6 +31,7 @@ export class ArticleService {
     title: string,
     content: string,
     categories: number[],
+    tags: number[],
     photo: string,
     auteur: string,
   }) {
@@ -38,8 +39,7 @@ export class ArticleService {
     return fetch('http://127.0.0.1:8000/api/articles', {
       method: 'POST',
       headers: {
-        ContentType: 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     })
