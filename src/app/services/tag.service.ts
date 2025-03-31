@@ -6,6 +6,8 @@ import { Tag } from '../models/tag';
 })
 export class TagService {
   tags : Tag[] = []
+  url = "http://10.252.252.53:8000"
+
     
      // Création de la function getOne
        getOneTag(id: number):Tag | undefined {
@@ -15,7 +17,7 @@ export class TagService {
      
        //Affichage avec fetch pour les api
        async allTags():Promise<Tag[]>{
-         let rep = await fetch('http://127.0.0.1:8000/api/tags', {
+         let rep = await fetch(`${this.url}/api/tags`, {
            method: "GET",
            headers: {
              'Content-Type': 'application/json'
@@ -33,7 +35,7 @@ export class TagService {
               description: description
             };
           
-            const response = await fetch('http://127.0.0.1:8000/api/tags', {
+            const response = await fetch(`${this.url}/api/tags`, {
               method: 'POST',
               body: JSON.stringify(tagData),
               headers: {
