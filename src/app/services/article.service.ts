@@ -1,6 +1,7 @@
+import { BASE_URL } from './../app.tokens';
 import { inject, Injectable } from '@angular/core';
 import { ArticleApi } from '../models/article-api';
-import { BASE_URL } from '../app.tokens';
+import { log } from 'node:console';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,12 @@ export class ArticleService {
   url = inject(BASE_URL);
 
   //avec resource en collection
-  async getAll(): Promise<ArticleApi[]> {
-    return fetch(`${this.url}/api/articles`)
+  async getAll(link?: string) {
+    let baseUrl = `${this.url}/api/articles`;
+    if (link) {
+      baseUrl = link;
+    }
+    return fetch(baseUrl)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
@@ -19,7 +24,8 @@ export class ArticleService {
         return new Error('erreujrrrrrrrr');
       })
       .then((data) => {
-        return data.data;
+        console.log(data);
+        return data;
       })
       .catch((err) => {
         console.log(err);
