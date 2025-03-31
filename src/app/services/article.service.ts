@@ -78,4 +78,23 @@ export class ArticleService {
       .then(data => data.data);
   }
 
+ async editform(id: number,data:{
+    title: string
+    photo: string
+    auteur: string
+    content: string
+    categories: number[],
+    tags: number[]
+  }){
+
+
+    return fetch(`http://127.0.0.1:8000/api/articles/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+  }
+
 }
