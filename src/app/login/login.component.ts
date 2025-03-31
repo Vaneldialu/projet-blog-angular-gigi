@@ -34,11 +34,7 @@ export class LoginComponent {
           localStorage.setItem('nom', response.data.name);
           alert('connexion reussie '); //  Affichage du toast vert
 
-          setTimeout(() => {
-            this.route.navigate(['/articles']).then(() => {
-              window.location.reload();
-            });
-          }, 3000);
+          this.route.navigate(['/articles']);
         } else {
           alert('email ou mot de passe incorrect');
         }
