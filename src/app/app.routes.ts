@@ -54,7 +54,7 @@ export const routes: Routes = [
     component : CreateTagComponent
   },
   {
-    path:'article/editArticle/:id',
+    path:'edit/:id',
     component:EditArticleComponent,
   }
 ];

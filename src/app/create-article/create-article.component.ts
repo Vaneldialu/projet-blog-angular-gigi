@@ -50,7 +50,7 @@ export class CreateArticleComponent {
   async getCategories() {
     this.categories = await this.categoryService.all()
     console.log(this.categories);
-    
+
   }
 
   async getTags(){

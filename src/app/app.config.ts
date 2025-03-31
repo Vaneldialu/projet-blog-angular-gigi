@@ -10,6 +10,6 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
      provideRouter(routes),
       provideClientHydration(withEventReplay()),
-      { provide: BASE_URL, useValue: 'http://10.252.252.46:8000' }
+      { provide: BASE_URL, useValue: 'http://10.252.252.41:8000' }
     ]
 };

@@ -65,7 +65,7 @@ export class ArticleService {
   }){
 
 
-    return fetch(`http://127.0.0.1:8000/api/articles/${id}`, {
+    return fetch(`${this.url}/api/articles/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
