@@ -7,7 +7,7 @@ import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-article-by-category',
-  imports: [RouterLink, NgFor,ArticleComponent],
+  imports: [NgFor,ArticleComponent, ArticleComponent],
   templateUrl: './article-by-category.component.html',
   styleUrl: './article-by-category.component.css'
 })
@@ -19,8 +19,12 @@ export class ArticleByCategoryComponent {
 
   async ngOnInit(){
     this.articleId = Number(this.route.snapshot.paramMap.get('id'));
-    const categories = await this.service.getArticleByCategory(this.articleId);
-    this.articles = categories.article;
+    // const categories = await this.servi
+    // ce.getArticleByCategory(this.articleId);
+    // this.articles = categories.article;
+    // this.article = await this.service.getOne(this.articleId);
+    this.articles = await this.service.getArticleByCategory(this.articleId);
+    console.log(this.articles);
   }
 
 }

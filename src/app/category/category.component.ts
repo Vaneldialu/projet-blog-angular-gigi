@@ -1,9 +1,10 @@
+import { RouterLink } from '@angular/router';
 import { Category } from './../models/category';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-category',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
