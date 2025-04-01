@@ -20,7 +20,7 @@ export class ArticleService {
       })
       .then((data) => {
        // return data.data;
-       return data
+       return data.data
       })
       .catch((err) => {
         console.log(err);
