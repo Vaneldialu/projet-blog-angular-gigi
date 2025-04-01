@@ -7,7 +7,8 @@ import { BASE_URL } from '../app.tokens';
 })
 export class ArticleService {
   articles: ArticleApi[] = [];
-  url = inject(BASE_URL);
+  //url = inject(BASE_URL);
+  url = "http://127.0.0.1:8000"
 
   //avec resource en collection
   async getAll(): Promise<ArticleApi[]> {
@@ -80,5 +81,16 @@ export class ArticleService {
       .then((response) => response.json())
       .then((data) => data.data);
   }
-
-}
+  async getTroisArticle(): Promise<ArticleApi[]> {
+    return fetch(`${this.url}/api/getLatestTreeArticle`)
+      .then(response => {
+        if (!response.ok) throw new Error('Erreur réseau');
+        return response.json();
+      })
+      .then(data => data.data) // Même traitement que getAll
+      .catch(err => {
+        console.error('Erreur:', err);
+        return [];
+      });
+  }
+  }
