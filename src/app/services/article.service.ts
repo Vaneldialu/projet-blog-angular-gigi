@@ -24,7 +24,6 @@ export class ArticleService {
         return new Error('erreujrrrrrrrr');
       })
       .then((data) => {
-        console.log(data);
         return data;
       })
       .catch((err) => {
