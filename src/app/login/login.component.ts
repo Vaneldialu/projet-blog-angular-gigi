@@ -14,8 +14,10 @@ import { NgIf } from '@angular/common';
 export class LoginComponent {
   route: Router = inject(Router);
   service: UserService = inject(UserService);
-  isConnected: boolean = false;
-  isOpenError: boolean = false;
+
+  isSuccess: boolean = false; // ✅ Affichage du toast de succès
+  isError: boolean = false; // ❌ Affichage du toast d'erreur
+  message: string = ''; // Message dynamique du toast
 
   loginForm = new FormGroup({
     email: new FormControl(''),
@@ -32,19 +34,30 @@ export class LoginComponent {
         if (response.data) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('nom', response.data.name);
-          alert('connexion reussie '); //  Affichage du toast vert
 
-          this.route.navigate(['/articles']);
+          this.message = 'Connexion réussie 🎉';
+          this.isSuccess = true; //  Affichage du toast vert
+          this.isError = false;
+
+          setTimeout(() => {
+            this.isSuccess = false;
+            this.route.navigate(['/articles']).then(() => {
+              window.location.reload();
+            });
+          }, 1000); // Attendre avant la redirection
         } else {
-          alert('email ou mot de passe incorrect');
+          this.message = 'Email ou mot de passe incorrect ❌';
+          this.isError = true; //  Affichage du toast rouge
         }
       })
       .catch(() => {
-        alert('Une erreur est survenue ');
+        this.message = 'Une erreur est survenue ⚠️';
+        this.isError = true; //  Affichage du toast rouge
       });
   }
 
-  close() {
-    this.isOpenError = false;
+  closeToast() {
+    this.isSuccess = false;
+    this.isError = false;
   }
 }
