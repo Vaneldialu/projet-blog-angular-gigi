@@ -10,6 +10,7 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
 import { RegisterComponent } from './register/register.component';
 import { TagListComponent } from './tag-list/tag-list.component';
 import { CreateTagComponent } from './create-tag/create-tag.component';
+import { EditArticleComponent } from './edit-article/edit-article.component';
 
 export const routes: Routes = [
   {
@@ -51,5 +52,9 @@ export const routes: Routes = [
   {
     path : 'create-tag',
     component : CreateTagComponent
+  },
+  {
+    path:'edit/:id',
+    component:EditArticleComponent,
   }
 ];

@@ -60,9 +60,29 @@ export class ArticleService {
     });
   }
 
+  async editform(id: number,data:{
+    title: string
+    photo: string
+    auteur: string
+    content: string
+    categories: number[],
+    tags: number[]
+  }){
+
+
+    return fetch(`${this.url}/api/articles/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+  }
+
   async getOne(id: number): Promise<ArticleApi | undefined> {
     return fetch(`${this.url}/api/articles/${id}`)
       .then((response) => response.json())
       .then((data) => data.data);
   }
+
 }

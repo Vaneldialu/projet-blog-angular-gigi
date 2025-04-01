@@ -38,12 +38,9 @@ export class CreateCategoryComponent {
 
         // Réinitialisation du formulaire et affichage du message
         this.applyForm.reset();
-        
-
-        // Redirection après 2 secondes
-        setTimeout(() => {
+       
           this.route.navigate(['/categories']);
-        }, 2000);
+      
       } catch (e) {
         this.isOpenGreen = true;
         this.errorMessage = 'Une erreur est survenue lors de l\'enregistrement de la catégorie.';
