@@ -47,4 +47,14 @@ export class CategoryService {
 
     return await response.json();
   }
+
+  async getArticleByCategory(id : number): Promise<Category>{
+    let rep = await fetch(`http://127.0.0.1:8000/api/categories/${id}`, {
+      method : "GET",
+      headers : {
+        'Content-Type' : 'application/json'
+      }
+    });
+    return await rep.json();
+  }
 }
