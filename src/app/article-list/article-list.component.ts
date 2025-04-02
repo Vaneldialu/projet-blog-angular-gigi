@@ -1,13 +1,16 @@
+import { Meta } from './../models/meta';
 import { Component, inject } from '@angular/core';
 import { ArticleComponent } from '../article/article.component';
-import { NgFor } from '@angular/common';
+import { NgFor, NgForOf } from '@angular/common';
 import { ArticleService } from '../services/article.service';
 import { ArticleApi } from '../models/article-api';
 import { RouterLink } from '@angular/router';
+import { Links } from '../models/links';
+
 
 @Component({
   selector: 'app-article-list',
-  imports: [ArticleComponent, NgFor, RouterLink],
+  imports: [ArticleComponent, NgFor, RouterLink ,NgForOf],
   templateUrl: './article-list.component.html',
   standalone: true,
   styleUrl: './article-list.component.css',
@@ -15,12 +18,8 @@ import { RouterLink } from '@angular/router';
 export class ArticleListComponent {
   articles!: ArticleApi[];
   service: ArticleService = inject(ArticleService);
-  links?: {
-    first: string;
-    last: string;
-    next?: string;
-    prev?: string;
-  };
+  links?:Links
+  meta?:Meta
 
   onRefreshPage() {
     this.getAll();
@@ -34,7 +33,10 @@ export class ArticleListComponent {
     this.service.getAll(link).then((reponse) => {
       this.articles = reponse.data;
       this.links = reponse.links;
+      this.meta = reponse.meta;
+      console.log("reponse:", reponse);
     });
+
   }
   next() {
     if (this.links?.next) {
@@ -47,4 +49,10 @@ export class ArticleListComponent {
       this.getAll(this.links.prev)
     }
   }
+  pagine(url?:string) {
+    if (url) {
+      this.getAll(url)
+    }
+  }
+
 }
