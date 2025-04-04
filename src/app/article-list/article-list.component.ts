@@ -7,10 +7,12 @@ import {RouterLink} from '@angular/router';
 import { FooterComponent } from "../footer/footer/footer.component";
 import { Links } from '../models/links';
 import { Meta } from './../models/meta';
+import { VideoComponent } from '../article-video/video.component';
+import { ArtcileVidComponent } from "../artcile-vid/artcile-vid.component";
 
 @Component({
   selector: 'app-article-list',
-  imports: [ArticleComponent, NgFor, RouterLink, FooterComponent,NgForOf, NgClass],
+  imports: [ArticleComponent, NgFor, RouterLink, FooterComponent, NgForOf, NgClass,ArtcileVidComponent],
   templateUrl: './article-list.component.html',
   standalone: true,
   styleUrl: './article-list.component.css',

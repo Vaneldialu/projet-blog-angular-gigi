@@ -1,19 +1,17 @@
-<article
-  class="bg-white shadow-md rounded-xl p-4 md:p-6 flex flex-col space-y-4 border-b border-gray-300 last:border-none">
-  <div class="flex flex-col md:flex-row items-center gap-4">
-    <!-- Image -->
-    <div class="w-full md:w-1/4">
-      <img [src]="article.photo" alt="Image de l'article" class="w-full h-32 object-cover rounded-lg shadow-sm">
-    </div>
-
-    <!-- Contenu -->
-    <div class="flex-1">
-      <h3 class="text-xl font-semibold text-gray-900">{{ article.title }}</h3>
-
-      <!-- Catégories -->
-      <div class="mt-2 flex flex-wrap gap-2">
-          <span *ngFor="let category of article.category"
-                class="bg-red-100 text-red-700 text-xs font-semibold px-2.5 py-1 rounded-full">
+<article class="bg-white shadow-md rounded-xl p-4 md:p-6 flex flex-col space-y-4 border-b border-gray-300 last:border-none">
+    <div class="flex flex-col md:flex-row items-center gap-4">
+      <!-- Image -->
+      <div class="w-full md:w-1/4">
+        <img src="https://www.google.com/imgres?q=image%20angular&imgurl=https%3A%2F%2Fopensource.google%2Fstatic%2Fimages%2Fprojects%2Fos-projects-angular.svg&imgrefurl=https%3A%2F%2Fopensource.google%2Fprojects%2Fangular&docid=J34xIwxhWMBD_M&tbnid=vhfGIWqI_SHunM&vet=12ahUKEwjqxPjN46qMAxVj0AIHHQr_M5UQM3oECGYQAA..i&w=800&h=800&hcb=2&ved=2ahUKEwjqxPjN46qMAxVj0AIHHQr_M5UQM3oECGYQAA" alt="Image de l'article" class="w-full h-32 object-cover rounded-lg shadow-sm">
+      </div>
+  
+      <!-- Contenu -->
+      <div class="flex-1">
+        <h3 class="text-xl font-semibold text-gray-900">{{ article.title }}</h3>
+  
+        <!-- Catégories -->
+        <div class="mt-2 flex flex-wrap gap-2">
+          <span *ngFor="let category of article.category" class="bg-red-100 text-red-700 text-xs font-semibold px-2.5 py-1 rounded-full">
             {{ category.name }}
           </span>
       </div>
