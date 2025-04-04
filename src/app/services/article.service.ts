@@ -1,6 +1,7 @@
+import { BASE_URL } from './../app.tokens';
 import { inject, Injectable } from '@angular/core';
 import { ArticleApi } from '../models/article-api';
-import { BASE_URL } from '../app.tokens';
+import { log } from 'node:console';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,12 @@ export class ArticleService {
   url = "http://127.0.0.1:8000"
 
   //avec resource en collection
-  async getAll(): Promise<ArticleApi[]> {
-    return fetch(`${this.url}/api/articles`)
+  async getAll(link?: string) {
+    let baseUrl = `${this.url}/api/articles`;
+    if (link) {
+      baseUrl = link;
+    }
+    return fetch(baseUrl)
       .then((response) => {
         if (response.status === 200) {
           return response.json();
@@ -20,6 +25,7 @@ export class ArticleService {
         return new Error('erreujrrrrrrrr');
       })
       .then((data) => {
+        return data;
        // return data.data;
        return data.data
       })
@@ -57,23 +63,24 @@ export class ArticleService {
     });
   }
 
-  async editform(id: number,data:{
-    title: string
-    photo: string
-    auteur: string
-    content: string
-    categories: number[],
-    tags: number[]
-  }){
-
-
+  async editform(
+    id: number,
+    data: {
+      title: string;
+      photo: string;
+      auteur: string;
+      content: string;
+      categories: number[];
+      tags: number[];
+    }
+  ) {
     return fetch(`${this.url}/api/articles/${id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
   }
 
   async getOne(id: number): Promise<ArticleApi | undefined> {
@@ -81,6 +88,8 @@ export class ArticleService {
       .then((response) => response.json())
       .then((data) => data.data);
   }
+
+
   async getTroisArticle(): Promise<ArticleApi[]> {
     return fetch(`${this.url}/api/getLatestTreeArticle`)
       .then(response => {
