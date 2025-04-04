@@ -1,16 +1,16 @@
-import { Meta } from './../models/meta';
-import { Component, inject } from '@angular/core';
-import { ArticleComponent } from '../article/article.component';
-import { NgClass, NgFor, NgForOf } from '@angular/common';
-import { ArticleService } from '../services/article.service';
-import { ArticleApi } from '../models/article-api';
-import { RouterLink } from '@angular/router';
+import {Component, inject} from '@angular/core';
+import {ArticleComponent} from '../article/article.component';
+import {NgClass,NgFor, NgForOf} from '@angular/common';
+import {ArticleService} from '../services/article.service';
+import {ArticleApi} from '../models/article-api';
+import {RouterLink} from '@angular/router';
+import { FooterComponent } from "../footer/footer/footer.component";
 import { Links } from '../models/links';
-
+import { Meta } from './../models/meta';
 
 @Component({
   selector: 'app-article-list',
-  imports: [ArticleComponent, NgFor, RouterLink ,NgForOf, NgClass],
+  imports: [ArticleComponent, NgFor, RouterLink, FooterComponent,NgForOf, NgClass],
   templateUrl: './article-list.component.html',
   standalone: true,
   styleUrl: './article-list.component.css',
