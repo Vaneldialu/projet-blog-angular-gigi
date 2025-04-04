@@ -1,26 +1,26 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Newsletter } from '../models/newsletter';
+import { BASE_URL } from '../app.tokens';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NewsletterService {
+  newsletters: Newsletter[] = [];
+  url = inject(BASE_URL);
 
-  newsletters : Newsletter[] = []
+  async storeNewsletter(emailParam: string): Promise<Newsletter> {
+    const newsletterAdd = {
+      email: emailParam,
+    };
 
-  async storeNewsletter(emailParam:string):Promise<Newsletter>{
-        const newsletterAdd = {
-          email : emailParam
-        }
-    
-        let rep =  await fetch('http://127.0.0.1:8000/api/newsletter', {
-                  method: 'POST',
-                  body: JSON.stringify(newsletterAdd),
-                  headers: {
-                    'Content-Type': 'application/json'
-                  }
-                })
-                .then(reponse => reponse.json())
-        return rep 
-      }
+    let rep = await fetch(`${this.url}/api/newsletters`, {
+      method: 'POST',
+      body: JSON.stringify(newsletterAdd),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((reponse) => reponse.json());
+    return rep;
+  }
 }
