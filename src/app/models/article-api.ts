@@ -7,7 +7,10 @@ export interface ArticleApi {
   title: string,
   slug: string,
   photo: string,
-  auteur: string,
+  auteur: {
+    id : number,
+    name : string
+  },
   content: string,
   nbr_comment: number,
   nbr_vue: number,
