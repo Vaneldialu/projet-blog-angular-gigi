@@ -26,4 +26,6 @@ export class FooterComponent implements OnInit {
       console.error('Error loading articles:', error);
     }
   }
+
+  currentYear = new Date().getFullYear();
 }
