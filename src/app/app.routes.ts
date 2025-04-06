@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
-import { ArticleListComponent } from './article-list/article-list.component';
-import { CategoryComponent } from './category/category.component';
-import { SingleComponent } from './single/single.component';
-import { CreateArticleComponent } from './create-article/create-article.component';
-import { LoginComponent } from './login/login.component';
-import { CreateCategoryComponent } from './create-category/create-category.component';
-import { CategoryListComponent } from './category-list/category-list.component';
-import { NewsletterComponent } from './newsletter/newsletter.component';
-import { RegisterComponent } from './register/register.component';
-import { TagListComponent } from './tag-list/tag-list.component';
-import { CreateTagComponent } from './create-tag/create-tag.component';
-import { EditArticleComponent } from './edit-article/edit-article.component';
-import { ArticleByCategoryComponent } from './article-by-category/article-by-category.component';
+import { ArticleListComponent } from './pages/article-list/article-list.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { SingleComponent } from './pages/single/single.component';
+import { CreateArticleComponent } from './pages/create-article/create-article.component';
+import { LoginComponent } from './pages/login/login.component';
+import { CreateCategoryComponent } from './pages/create-category/create-category.component';
+import { CategoryListComponent } from './pages/category-list/category-list.component';
+import { NewsletterComponent } from './pages/newsletter/newsletter.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { TagListComponent } from './pages/tag-list/tag-list.component';
+import { CreateTagComponent } from './pages/create-tag/create-tag.component';
+import { EditArticleComponent } from './pages/edit-article/edit-article.component';
+import { ArticleByCategoryComponent } from './pages/article-by-category/article-by-category.component';
 
 export const routes: Routes = [
   {
