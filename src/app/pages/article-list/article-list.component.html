@@ -12,7 +12,10 @@
   </div>
  
   <br>
-  <app-article *ngFor="let article of articles" [article]="article" (refreshPage)="onRefreshPage()"></app-article>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+    <app-article *ngFor="let article of articles" [article]="article" (refreshPage)="onRefreshPage()"></app-article>
+  </div>
+  
 </div>
 <div class="text-center">
   <div role="status">

@@ -93,14 +93,12 @@
     <label
       for="title"
       class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
-    >Titre</label
-    >
+    >Titre</label>
     <input
       formControlName="title"
       type="text"
       id="title"
       class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      placeholder="Votre titre le H"
       required
     />
     <small *ngIf="!formData.get('title')?.valid" class="text-red-500">Le titre est requis.</small>
@@ -118,30 +116,13 @@
       class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       required
     />
-    <small *ngIf="!formData.get('photo')?.valid" class="text-red-500">La photo est requis.</small>
-  </div>
-  <div class="mb-5">
-    <label
-      for="author"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
-    >Auteur</label
-    >
-    <input
-      formControlName="auteur"
-      type="text"
-      id="author"
-      class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      placeholder="le H prime"
-      required
-    />
-    <small *ngIf="!formData.get('auteur')?.valid" class="text-red-500">Le nom de l'auteur est requis.</small>
+    <small *ngIf="!formData.get('photo')?.valid" class="text-red-500">Url de la photo est requis.</small>
   </div>
   <div class="mb-4">
     <label for="categories" class="block mb-2 text-sm font-medium text-gray-900">Categories</label>
-    <select id="categories" multiple formControlName="categories"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+    <select id="categories" multiple formControlName="categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
       <option selected>Selection une categorie</option>
-      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
     </select>
   </div>
   <div class="mb-4">
@@ -149,19 +130,18 @@
     <select id="tags" multiple formControlName="tags"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
       <option selected>Selection un tag</option>
-      <option *ngFor="let tag of tags" [value]="tag.id">{{ tag.name }}</option>
+      <option *ngFor="let tag of tags" [value]="tag.id">{{tag.name}}</option>
     </select>
   </div>
   <div class="mb-5">
     <label
       formControlName="content"
-      for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Content</label>
-    <textarea id="message" rows="4" formControlName="content"
-              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+      for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Content
+    </label>
+    <textarea id="message" rows="4" formControlName="content" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
     <small *ngIf="!formData.get('content')?.valid" class="text-red-500">Le contenu est requis ou doit comporter plus ou moins 100 caractères</small>
   </div>
-  <button type="submit"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
     Enregistrer
   </button>
 </form>
