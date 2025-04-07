@@ -40,12 +40,12 @@ export class ArticleService {
     categories: number[];
     tags: number[];
     photo: string;
-    auteur: string;
   }) {
     return fetch(`${this.url}/api/articles`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+         Authorization: 'Bearer ' + localStorage.getItem('token'),
       },
       body: JSON.stringify(data),
     });
@@ -68,7 +68,6 @@ export class ArticleService {
     data: {
       title: string;
       photo: string;
-      auteur: string;
       content: string;
       categories: number[];
       tags: number[];
@@ -78,6 +77,7 @@ export class ArticleService {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
       },
       body: JSON.stringify(data),
     });

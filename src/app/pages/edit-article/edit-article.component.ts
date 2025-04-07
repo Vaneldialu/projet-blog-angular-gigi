@@ -39,7 +39,6 @@ export class EditArticleComponent {
   formData = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.min(3)]),
     photo: new FormControl('', [Validators.required]),
-    auteur: new FormControl('', [Validators.required]),
     content: new FormControl('', [
       Validators.required,
       Validators.minLength(100),
@@ -53,9 +52,15 @@ export class EditArticleComponent {
     console.log(this.categories);
   }
 
+  async getTags() {
+    this.tags = await this.tagService.allTags();
+    console.log(this.tags);
+  }
+
   async ngOnInit() {
     const articleId = Number(this.route.snapshot.paramMap.get('id'));
     await this.getCategories();
+    await this.getTags();
 
     this.article = await this.articleService.getOne(articleId);
   }
@@ -67,7 +72,6 @@ export class EditArticleComponent {
     await this.articleService.editform(this.article?.id!!, {
       title: this.formData.value.title ?? '',
       photo: this.formData.value.photo ?? '',
-      auteur: this.formData.value.auteur ?? '',
       content: this.formData.value.content ?? '',
       categories: this.formData.value.categories ?? [],
       tags: this.formData.value.tags ?? []
