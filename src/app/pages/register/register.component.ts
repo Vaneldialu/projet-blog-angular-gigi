@@ -44,6 +44,7 @@ export class RegisterComponent {
       )
       .then((user) => {
         // Si l'enregistrement réussit, rediriger l'utilisateur ou afficher un message de succès
+
         this.isConnected = true;
         this.route.navigate(['']); // Exemple de redirection vers la page de login
       })

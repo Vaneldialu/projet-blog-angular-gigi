@@ -36,7 +36,6 @@ export class CreateArticleComponent {
   formData = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.min(3)]),
     photo: new FormControl('', [Validators.required]),
-    auteur: new FormControl('', [Validators.required]),
     content: new FormControl('', [Validators.required, Validators.minLength(100)]),
     categories: new FormControl([],[Validators.required]),
     tags : new FormControl([])
@@ -67,7 +66,6 @@ export class CreateArticleComponent {
         await this.articleService.createArticle({
           title: this.formData.value.title ?? '',
           photo: this.formData.value.photo ?? '',
-          auteur: this.formData.value.auteur ?? '',
           content: this.formData.value.content ?? '',
           categories: this.formData.value.categories ?? [],
           tags: this.formData.value.tags ?? []
@@ -82,5 +80,6 @@ export class CreateArticleComponent {
     }
 
   }
+
 
 }

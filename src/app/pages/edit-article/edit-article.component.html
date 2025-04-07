@@ -122,23 +122,6 @@
     />
     <small *ngIf="!formData.get('photo')?.valid" class="text-red-500">La photo est requis.</small>
   </div>
-  <div class="mb-5">
-    <label
-      for="author"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
-    >Auteur</label
-    >
-    <input
-      formControlName="auteur"
-      type="text"
-      id="author"
-      [value]="article?.auteur"
-      class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      placeholder="le H prime"
-      required
-    />
-    <small *ngIf="!formData.get('auteur')?.valid" class="text-red-500">Le nom de l'auteur est requis.</small>
-  </div>
   <div class="mb-4">
     <label for="categories" class="block mb-2 text-sm font-medium text-gray-900">Categories</label>
     <select id="categories" multiple formControlName="categories"
