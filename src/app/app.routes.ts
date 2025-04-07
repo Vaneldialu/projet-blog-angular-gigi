@@ -61,5 +61,9 @@ export const routes: Routes = [
   {
     path : 'categories/:id',
     component : ArticleByCategoryComponent
+  },
+  {
+    path : 'tags/:id',
+    component : ArticleByCategoryComponent
   }
 ];
