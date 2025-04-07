@@ -6,7 +6,7 @@ import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink, NgFor],
+  imports: [RouterLink],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
