@@ -6,7 +6,7 @@ import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink, NgFor],
+  imports: [RouterLink],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
@@ -26,4 +26,6 @@ export class FooterComponent implements OnInit {
       console.error('Error loading articles:', error);
     }
   }
+
+  currentYear = new Date().getFullYear();
 }
