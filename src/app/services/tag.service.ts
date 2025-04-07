@@ -48,4 +48,16 @@ export class TagService {
 
     return await response.json();
   }
+
+  async getArticleByTag(id: number): Promise<any> {
+    let rep = await fetch(`${this.url}/api/tags/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    // console.log(rep)
+    // console.log(rep);
+    return rep.json();
+  }
 }
