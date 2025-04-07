@@ -3,6 +3,7 @@ import { ArticleService } from '../../services/article.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { ArticleApi } from '../../models/article-api';
+import { Comment } from '../../models/comment';
 
 @Component({
   selector: 'app-single',
@@ -13,6 +14,7 @@ import { ArticleApi } from '../../models/article-api';
 export class SingleComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   article!: ArticleApi|undefined ;
+  comments!: Comment[];
   service: ArticleService = inject(ArticleService);
   articleId = -1;
 
@@ -21,5 +23,7 @@ export class SingleComponent {
     
     // Utilisation de await pour récupérer l'article avant l'affichage
     this.article = await this.service.getOne(this.articleId);
+    this.comments = await this.service.getComments(this.articleId);
+    console.log(this.comments)
   }
 }
