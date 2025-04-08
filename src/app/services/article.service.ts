@@ -9,7 +9,7 @@ import { log } from 'node:console';
 export class ArticleService {
   articles: ArticleApi[] = [];
   //url = inject(BASE_URL);
-  url = "http://127.0.0.1:8000"
+  url = 'http://127.0.0.1:8000';
 
   //avec resource en collection
   async getAll(link?: string) {
@@ -26,8 +26,8 @@ export class ArticleService {
       })
       .then((data) => {
         return data;
-       // return data.data;
-       return data.data
+        // return data.data;
+        return data.data;
       })
       .catch((err) => {
         console.log(err);
@@ -45,7 +45,7 @@ export class ArticleService {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-         Authorization: 'Bearer ' + localStorage.getItem('token'),
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
       },
       body: JSON.stringify(data),
     });
@@ -53,7 +53,7 @@ export class ArticleService {
 
   async likeArticle(data: { articleId: number }) {
     console.log(data);
-    return fetch(`${this.url}/api/likes`, {
+    return fetch(`${this.url}/api/articles/${data.articleId}/likes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,17 +89,16 @@ export class ArticleService {
       .then((data) => data.data);
   }
 
-
   async getTroisArticle(): Promise<ArticleApi[]> {
     return fetch(`${this.url}/api/getLatestTreeArticle`)
-      .then(response => {
+      .then((response) => {
         if (!response.ok) throw new Error('Erreur réseau');
         return response.json();
       })
-      .then(data => data.data) // Même traitement que getAll
-      .catch(err => {
+      .then((data) => data.data) // Même traitement que getAll
+      .catch((err) => {
         console.error('Erreur:', err);
         return [];
       });
   }
-  }
+}
