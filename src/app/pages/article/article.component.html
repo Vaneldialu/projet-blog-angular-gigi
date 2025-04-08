@@ -1,176 +1,177 @@
-<!-- <article class="bg-white shadow-md rounded-xl p-4 md:p-6 flex flex-col space-y-4 border-b border-gray-300 last:border-none">
-    <div class="flex flex-col md:flex-row items-center gap-4">
-      
-      <div class="w-full md:w-1/4">
-        <img src="https://www.google.com/imgres?q=image%20angular&imgurl=https%3A%2F%2Fopensource.google%2Fstatic%2Fimages%2Fprojects%2Fos-projects-angular.svg&imgrefurl=https%3A%2F%2Fopensource.google%2Fprojects%2Fangular&docid=J34xIwxhWMBD_M&tbnid=vhfGIWqI_SHunM&vet=12ahUKEwjqxPjN46qMAxVj0AIHHQr_M5UQM3oECGYQAA..i&w=800&h=800&hcb=2&ved=2ahUKEwjqxPjN46qMAxVj0AIHHQr_M5UQM3oECGYQAA" alt="Image de l'article" class="w-full h-32 object-cover rounded-lg shadow-sm">
-      </div>
-  
-      
-      <div class="flex-1">
-        <h3 class="text-xl font-semibold text-gray-900">{{ article.title }}</h3>
-  
-       
-        <div class="mt-2 flex flex-wrap gap-2">
-          <span *ngFor="let category of article.category" class="bg-red-100 text-red-700 text-xs font-semibold px-2.5 py-1 rounded-full">
-            {{ category.name }}
-          </span>
-      </div>
-
-    
-      <div class="mt-2 flex flex-wrap gap-2">
-        <span *ngFor="let tag of article.tags"
-              class="bg-blue-100 text-black-300 text-xs font-semibold px-2.5 py-1 rounded-full">
-          {{ tag.name }}
-        </span>
-      </div>
-
-      <p class="text-sm text-gray-600 mt-2">Slug: {{ article.slug }}</p>
-      <p class="text-sm text-gray-700 mt-1">
-        <i>Publié par <b>{{ article.auteur }}</b> {{ article.date_creation }}</i>
-      </p>
-    </div>
-  </div>
-
-
-  <div class="flex justify-between items-center border-t pt-4">
-    <p class="text-gray-500 text-sm">{{ article.nbr_comment }} commentaires</p>
-    <p class="text-gray-500 text-sm">{{ article.nbr_vue }} vues</p>
-    <div class="space-x-4">
-      <button (click)="onLike()" type="button"
-              class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-700">
-        Like ({{ article.nb_likes }})
-      </button>
-      <a [routerLink]="['/article', article.id]"
-         class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-red-700">
-        Voir plus
-      </a>
-      <a [routerLink]="['/edit',article.id]"
-         class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-red-700">
-        modifier
-      </a>
-    </div>
-  </div>
-</article> -->
-
 <article>
-  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
+  <div
+    class="max-w-sm bg-white border border-gray-200 rounded-2xl shadow-md overflow-hidden"
+  >
     <a [routerLink]="['/article', article.id]">
-      <img class="rounded-t-lg" src="{{ article.photo }}" alt="" />
+      <img
+        class="rounded-t-2xl w-full h-48 object-cover"
+        [src]="article.photo"
+        [alt]="article.title"
+      />
     </a>
+
     <div class="p-5">
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-dark-900 dark:text-dark-900"
-      >
+      <!-- TITRE -->
+      <h5 class="mb-2 text-xl font-bold text-gray-900 break-words">
         {{ article.title }}
       </h5>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+
+      <!-- CATEGORIES -->
+      <div class="mb-2">
+        <div class="flex flex-wrap gap-2">
+          <span
+            *ngFor="let category of article.category"
+            class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-1 rounded-full"
+          >
+            {{ category.name }}
+          </span>
+        </div>
+      </div>
+
+      <!-- TAGS -->
+      <div class="mb-4">
+        <div class="flex flex-wrap gap-2">
+          <span
+            *ngFor="let tag of article.tags"
+            class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-1 rounded-full"
+          >
+            {{ tag.name }}
+          </span>
+        </div>
+      </div>
+
+      <!-- CONTENU -->
+      <p class="mb-4 text-sm text-gray-700 line-clamp-3 break-words">
         {{ article.content }}
       </p>
-      <div class="mt-2 flex flex-wrap gap-2">
-        <span
-          *ngFor="let category of article.category"
-          class="bg-red-100 text-red-700 text-xs font-semibold px-2.5 py-1 rounded-full"
+
+      <!-- AUTEUR + DATE -->
+      <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+        <img
+          [src]="'https://ui-avatars.com/api/?name=' + article.auteur.name"
+          class="w-6 h-6 rounded-full"
+        />
+        <span>{{ article.auteur.name }}</span>
+        <span>•</span>
+        <span>{{ article.date_creation }}</span>
+      </div>
+
+      <!-- VUES & COMMENTAIRES -->
+      <div class="flex justify-between text-xs text-gray-500 mb-4">
+        <p>{{ article.nbr_vue }} vue(s)</p>
+        <p>{{ article.nbr_comment }} commentaire(s)</p>
+      </div>
+
+
+  
+      <!--  si l'utilisateur est connecté et n’est pas l’auteur de l’article-->
+      <div
+        *ngIf="isConnected && !isAuthor"
+        class="flex flex-wrap items-center gap-2"
+      >
+
+        <button
+          (click)="onLike()"
+          type="button"
+          class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition hover:bg-red-700"
         >
-          {{ category.name }}
-        </span>
-      </div>
-      <div class="mt-2 flex flex-wrap gap-2">
-        <span
-          *ngFor="let tag of article.tags"
-          class="bg-blue-100 text-black-300 text-xs font-semibold px-2.5 py-1 rounded-full"
+          ❤️ J'aime ({{ article.nb_likes }})
+        </button>
+        <a
+          [routerLink]="['/article', article.id]"
+          class="px-4 py-2 bg-blue-700 text-white text-sm font-medium rounded-lg hover:bg-blue-800 transition inline-flex items-center"
         >
-          {{ tag.name }}
-        </span>
+          Voir plus
+          <svg
+            class="w-4 h-4 ml-2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            />
+          </svg>
+        </a>
       </div>
-      <p class="text-sm text-gray-600 mt-2">Slug: {{ article.slug }}</p>
-      <p class="text-sm text-gray-700 mt-1">
-        <i
-          >Publié par <b>{{ article.auteur.name }}</b>
-          {{ article.date_creation }}</i
+      <!-- ============================================== -->
+
+      <!-- si l'utilisateur est connecté et est l’auteur de l’article -->
+      <div
+        *ngIf="isConnected && isAuthor"
+        class="flex flex-wrap items-center gap-2"
+      >
+        <button
+          (click)="onLike()"
+          type="button"
+          class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition hover:bg-red-700"
         >
-      </p>
-      <br />
-      <div class="flex justify-between items-center">
-        <p class="text-gray-500 text-sm">{{ article.nbr_vue }} vue(s)</p>
-        <p class="text-gray-500 text-sm">
-          {{ article.nbr_comment }} commentaire(s)
-        </p>
+          ❤️ J'aime ({{ article.nb_likes }})
+        </button>
+
+        <a
+          [routerLink]="['/edit', article.id]"
+          class="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition"
+        >
+          ✏️ Modifier
+        </a>
+
+        <a
+          [routerLink]="['/article', article.id]"
+          class="px-4 py-2 bg-blue-700 text-white text-sm font-medium rounded-lg hover:bg-blue-800 transition inline-flex items-center"
+        >
+          Voir plus
+          <svg
+            class="w-4 h-4 ml-2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            />
+          </svg>
+        </a>
       </div>
-      <br />
+      <!-- ============================================== -->
 
-      <div *ngIf="isConnected">
-        <div class="space-x-4">
-          <button
-            (click)="onLike()"
-            type="button"
-            class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-700"
+      <!-- si l'utilisateur n’est pas connecté -->
+      <div *ngIf="!isConnected" class="flex flex-wrap items-center gap-2">
+        <button
+          (click)="onLike()"
+          type="button"
+          class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition hover:bg-red-700"
+        >
+          ❤️ J'aime ({{ article.nb_likes }})
+        </button>
+
+        <a
+          [routerLink]="['/article', article.id]"
+          class="px-4 py-2 bg-blue-700 text-white text-sm font-medium rounded-lg hover:bg-blue-800 transition inline-flex items-center"
+        >
+          Voir plus
+          <svg
+            class="w-4 h-4 ml-2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
           >
-            ❤ ({{ article.nb_likes }})
-          </button>
-          <a
-            [routerLink]="['/edit', article.id]"
-            class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
-          >
-            ✏
-          </a>
-          <a
-            [routerLink]="['/article', article.id]"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Voir plus
-            <svg
-              class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </a>
-        </div>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            />
+          </svg>
+        </a>
       </div>
-
-      <div *ngIf="!isConnected">
-        <div class="space-x-4">
-          <button
-            (click)="onLike()"
-            type="button"
-            class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-blue-700"
-          >
-            ❤ ({{ article.nb_likes }})
-          </button>
-          <a
-            [routerLink]="['/article', article.id]"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Voir plus
-            <svg
-              class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-
+      <!-- ============================================== -->
     </div>
   </div>
 </article>
