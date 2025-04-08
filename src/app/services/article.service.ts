@@ -53,7 +53,7 @@ export class ArticleService {
 
   async likeArticle(data: { articleId: number }) {
     console.log(data);
-    return fetch(`${this.url}/api/likes`, {
+    return fetch(`${this.url}/api/articles/${data.articleId}/likes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export class ArticleService {
 
 
   async getTroisArticle(): Promise<ArticleApi[]> {
-    return fetch(`${this.url}/api/getLatestTreeArticle`)
+    return fetch(`${this.url}/api/ThreeLatestArticles`)
       .then(response => {
         if (!response.ok) throw new Error('Erreur réseau');
         return response.json();
