@@ -101,6 +101,24 @@ export class ArticleService {
     // Typage explicite ici
     return json.data as Comment[];
   }
+
+
+  async storeComment(data: {content: string; article_id: number }) {
+    const response = await fetch(`${this.url}/api/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (!response.ok) {
+      throw new Error('Erreur lors de la création du commentaire');
+    }
+  
+    return await response.json();
+  }
   
   
 

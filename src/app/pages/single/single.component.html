@@ -39,11 +39,11 @@
   <!-- Section des commentaires -->
   <br />
   <div class="mt-6">
-    <form action="">
+    <form method="post" [formGroup]="formData" (submit)="onSubmitForm()">
       <textarea
         type="text"
         id="title"
-        formControlName="name"
+        formControlName="content"
         placeholder="Laissez un commentaire"
         class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
