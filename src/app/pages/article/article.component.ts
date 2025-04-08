@@ -15,6 +15,8 @@ export class ArticleComponent {
   @Input() article!: ArticleApi;
   @Output() refreshPage = new EventEmitter();
   isConnected: boolean = false;
+  userId: number = Number(localStorage.getItem('userId'));
+  isAuthor: boolean = false;
 
   // Injections
   route: ActivatedRoute = inject(ActivatedRoute);
@@ -23,7 +25,14 @@ export class ArticleComponent {
 
   ngOnInit() {
     this.isConnected = !!localStorage.getItem('token');
+    this.userId = Number(localStorage.getItem('userId'));
+
+  if (this.isConnected && this.article?.auteur.id) {
+    this.isAuthor = this.userId === this.article.auteur.id;
   }
+  }
+
+
 
   async onLike() {
     try {
@@ -34,7 +43,7 @@ export class ArticleComponent {
         alert('Vous devez être connecté pour aimer un article.');
 
         setTimeout(() => {
-          this.router.navigate(['']);
+          this.router.navigate(['/login']);
         }, 0);
       }
     } catch (e) {

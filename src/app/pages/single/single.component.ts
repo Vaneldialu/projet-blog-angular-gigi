@@ -57,7 +57,7 @@ export class SingleComponent {
     }
     else{
       alert('Vous devez vous connecter pour ajouter un commentaire')
-      this.router.navigate(['']);
+      this.router.navigate(['/login']);
     }
     
 
