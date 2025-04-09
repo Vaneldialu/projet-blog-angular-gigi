@@ -124,7 +124,7 @@ export class ArticleService {
 
 
   async getTroisArticle(): Promise<ArticleApi[]> {
-    return fetch(`${this.url}/api/getLatestTreeArticle`)
+    return fetch(`${this.url}/api/ThreeLatestArticles`)
       .then(response => {
         if (!response.ok) throw new Error('Erreur réseau');
         return response.json();
