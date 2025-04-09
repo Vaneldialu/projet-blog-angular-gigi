@@ -1,8 +1,0 @@
-.truncate-multiline {
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* Nombre de lignes */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
