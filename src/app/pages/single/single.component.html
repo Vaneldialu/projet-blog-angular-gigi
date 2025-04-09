@@ -1,5 +1,8 @@
-<br>
-<br>
+<br />
+<br />
+<br />
+<br />
+<br />
 <div class="max-w-3xl mx-auto p-4 bg-white shadow-md rounded-lg">
   <!-- Titre de l'article -->
   <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ article?.title }}</h1>
@@ -21,13 +24,12 @@
   <!-- Auteur et date -->
   <div class="mt-4 text-gray-600 text-sm">
     <i>
-      Publié par <b class="text-gray-800">{{ article?.auteur?.name }}</b> 
+      Publié par <b class="text-gray-800">{{ article?.auteur?.name }}</b>
 
-      
       {{ article?.date_creation }}
     </i>
   </div>
-  <br>
+  <br />
   <div>
     <p class="text-gray-700 text-sm mt-1">
       {{ article?.content }}
@@ -35,22 +37,60 @@
   </div>
 
   <!-- Section des commentaires -->
+  <br />
   <div class="mt-6">
-    <h2 class="text-lg font-semibold mb-3">Commentaires ({{ article?.nbr_comment }})</h2>
-    <div *ngFor="let comment of article?.comments; let i = index" class="flex items-start space-x-4 p-4 border-b">
-      <!-- Avatar -->
+    <form method="post" [formGroup]="formData" (submit)="onSubmitForm()">
+      <textarea
+        type="text"
+        id="title"
+        formControlName="content"
+        placeholder="Laissez un commentaire"
+        class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+      </textarea>
+      <br />
+      <button
+        type="submit"
+        class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5"
+      >
+        Envoyer
+      </button>
+    </form>
+
+    <br />
+
+    <h2 class="text-lg font-semibold mb-3">
+      Commentaire(s) ({{ article?.nbr_comment }})
+    </h2>
+
+    <br />
+
+    <div
+      *ngFor="let comment of comments; let i = index"
+      class="flex items-start space-x-4 p-4 border-b"
+    >
+
       <div>
         <img src="https://i.pravatar.cc/40" class="w-10 h-10 rounded-full" />
       </div>
-      <!-- Contenu du commentaire -->
+  
       <div class="flex-1">
         <div class="flex items-center space-x-2">
-          <b class="text-gray-900">{{ comment.auteur }}</b>
+          <b class="text-gray-900">{{ comment.user.name }}</b>
         </div>
         <p class="text-gray-700 text-sm mt-1">{{ comment.content }}</p>
+        <p class="text-gray-500 text-xs mt-1 italic">
+          Commenté {{ comment.date_creation }}
+        </p>
       </div>
     </div>
   </div>
-  
 </div>
-<br>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

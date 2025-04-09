@@ -34,6 +34,8 @@ export class LoginComponent {
         if (response.data) {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('nom', response.data.name);
+          localStorage.setItem('email', response.data.email);
+          localStorage.setItem('userId', String(response.data.id));
 
           this.message = 'Connexion réussie 🎉';
           this.isSuccess = true; //  Affichage du toast vert

@@ -12,11 +12,12 @@ import { TagListComponent } from './pages/tag-list/tag-list.component';
 import { CreateTagComponent } from './pages/create-tag/create-tag.component';
 import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 import { ArticleByCategoryComponent } from './pages/article-by-category/article-by-category.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    component: HomeComponent,
   },
   {
     path: 'articles',
@@ -45,6 +46,10 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'login',
+    component : LoginComponent
   },
   {
     path : 'tags',
