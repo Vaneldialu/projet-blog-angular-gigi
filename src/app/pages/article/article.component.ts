@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
 import { ArticleApi } from '../../models/article-api';
 import { ArticleService } from '../../services/article.service';
+import { log } from 'console';
 
 @Component({
   selector: 'app-article',
@@ -35,6 +36,8 @@ export class ArticleComponent {
 
 
   async onLike() {
+    console.log(this.article);
+    
     try {
       if (this.isConnected) {
         await this.articleService.likeArticle({ articleId: this.article.id });
