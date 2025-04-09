@@ -56,7 +56,7 @@ export class ArticleService {
 
   
   async likeArticle(data: { articleId: number }) {
-    console.log(data);
+    console.log(localStorage.getItem('token'));
     return fetch(`${this.url}/api/articles/${data.articleId}/likes`, {
       method: 'POST',
       headers: {
