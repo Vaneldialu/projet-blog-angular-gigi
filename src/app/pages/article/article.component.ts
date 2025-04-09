@@ -19,7 +19,7 @@ export class ArticleComponent {
   private articleService = inject(ArticleService);
 
   async onLike() {
-    console.log(this.article.id);
+    console.log(this.article);
     
     try {
       await this.articleService.likeArticle({ articleId: this.article.id });

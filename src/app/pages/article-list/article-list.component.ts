@@ -37,7 +37,8 @@ export class ArticleListComponent {
       this.articles = reponse.data;
       this.links = reponse.links;
       this.meta = reponse.meta;
-      console.log("reponse:", reponse);
+      console.log("reponse:",this.articles);
+      
     });
 
   }
