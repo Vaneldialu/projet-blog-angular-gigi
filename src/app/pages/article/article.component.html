@@ -1,127 +1,86 @@
 <article>
   <div
-    class="max-w-sm bg-white border border-gray-200 rounded-2xl shadow-md overflow-hidden"
+    class="max-w-sm bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200 transition-transform transform hover:-translate-y-1 hover:shadow-2xl duration-300 flex flex-col h-[28rem]"
   >
+    <!-- IMAGE -->
     <a [routerLink]="['/article', article.id]">
       <img
-        class="rounded-t-2xl w-full h-48 object-cover"
+        class="w-full h-44 object-cover"
         [src]="article.photo"
         [alt]="article.title"
       />
     </a>
 
-    <div class="p-5">
-      <!-- TITRE -->
-      <h5 class="mb-2 text-xl font-bold text-gray-900 break-words">
-        {{ article.title }}
-      </h5>
-
-      <!-- CATEGORIES -->
-      <div class="mb-2">
+    <!-- CONTENU -->
+    <div class="flex-1 p-5 flex flex-col justify-between">
+      <div class="space-y-3">
+        <!-- TAGS & CATEGORIES -->
         <div class="flex flex-wrap gap-2">
           <span
             *ngFor="let category of article.category"
-            class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-1 rounded-full"
+            class="text-xs bg-indigo-100 text-indigo-700 font-semibold px-3 py-1 rounded-full"
           >
             {{ category.name }}
           </span>
-        </div>
-      </div>
-
-      <!-- TAGS -->
-      <div class="mb-4">
-        <div class="flex flex-wrap gap-2">
           <span
             *ngFor="let tag of article.tags"
-            class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-1 rounded-full"
+            class="text-xs bg-pink-100 text-pink-700 font-semibold px-3 py-1 rounded-full"
           >
             {{ tag.name }}
           </span>
         </div>
+
+        <!-- TITRE -->
+        <h3 class="text-lg font-extrabold text-gray-900 line-clamp-2">
+          {{ article.title }}
+        </h3>
+
+        <!-- CONTENU -->
+        <p class="text-sm text-gray-700 line-clamp-2">
+          {{ article.content }}
+        </p>
       </div>
 
-      <!-- CONTENU -->
-      <p class="mb-4 text-sm text-gray-700 line-clamp-3 break-words">
-        {{ article.content }}
-      </p>
+      <!-- INFOS BASSES -->
+      <div class="mt-4">
+        <div class="flex items-center text-sm text-gray-500 space-x-2">
+          <img
+            [src]="'https://ui-avatars.com/api/?name=' + article.auteur.name"
+            class="w-6 h-6 rounded-full"
+          />
+          <span>{{ article.auteur.name }}</span>
+          <span>•</span>
+          <span>{{ article.date_creation }}</span>
+        </div>
 
-      <!-- AUTEUR + DATE -->
-      <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
-        <img
-          [src]="'https://ui-avatars.com/api/?name=' + article.auteur.name"
-          class="w-6 h-6 rounded-full"
-        />
-        <span>{{ article.auteur.name }}</span>
-        <span>•</span>
-        <span>{{ article.date_creation }}</span>
+        <!-- STATS -->
+        <div class="flex justify-between text-xs text-gray-400 mt-2">
+          <span>{{ article.nbr_vue }} vue(s)</span>
+          <span>{{ article.nbr_comment }} commentaire(s)</span>
+        </div>
       </div>
 
-      <!-- VUES & COMMENTAIRES -->
-      <div class="flex justify-between text-xs text-gray-500 mb-4">
-        <p>{{ article.nbr_vue }} vue(s)</p>
-        <p>{{ article.nbr_comment }} commentaire(s)</p>
-      </div>
-
-
-  
-      <!--  si l'utilisateur est connecté et n’est pas l’auteur de l’article-->
-      <div
-        *ngIf="isConnected && !isAuthor"
-        class="flex flex-wrap items-center gap-2"
-      >
-
+      <!-- ACTIONS -->
+      <div class="mt-4 flex flex-wrap items-center gap-2">
         <button
           (click)="onLike()"
           type="button"
-          class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition hover:bg-red-700"
-        >
-          ❤️ J'aime ({{ article.nb_likes }})
-        </button>
-        <a
-          [routerLink]="['/article', article.id]"
-          class="px-4 py-2 bg-blue-700 text-white text-sm font-medium rounded-lg hover:bg-blue-800 transition inline-flex items-center"
-        >
-          Voir plus
-          <svg
-            class="w-4 h-4 ml-2"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </a>
-      </div>
-      <!-- ============================================== -->
-
-      <!-- si l'utilisateur est connecté et est l’auteur de l’article -->
-      <div
-        *ngIf="isConnected && isAuthor"
-        class="flex flex-wrap items-center gap-2"
-      >
-        <button
-          (click)="onLike()"
-          type="button"
-          class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition hover:bg-red-700"
+          class="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium transition hover:bg-red-700"
         >
           ❤️ J'aime ({{ article.nb_likes }})
         </button>
 
         <a
+          *ngIf="isConnected && isAuthor"
           [routerLink]="['/edit', article.id]"
-          class="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition"
+          class="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-full hover:bg-green-700 transition"
         >
           ✏️ Modifier
         </a>
 
         <a
           [routerLink]="['/article', article.id]"
-          class="px-4 py-2 bg-blue-700 text-white text-sm font-medium rounded-lg hover:bg-blue-800 transition inline-flex items-center"
+          class="px-4 py-2 bg-blue-700 text-white text-sm font-medium rounded-full hover:bg-blue-800 transition inline-flex items-center"
         >
           Voir plus
           <svg
@@ -139,39 +98,6 @@
           </svg>
         </a>
       </div>
-      <!-- ============================================== -->
-
-      <!-- si l'utilisateur n’est pas connecté -->
-      <div *ngIf="!isConnected" class="flex flex-wrap items-center gap-2">
-        <button
-          (click)="onLike()"
-          type="button"
-          class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition hover:bg-red-700"
-        >
-          ❤️ J'aime ({{ article.nb_likes }})
-        </button>
-
-        <a
-          [routerLink]="['/article', article.id]"
-          class="px-4 py-2 bg-blue-700 text-white text-sm font-medium rounded-lg hover:bg-blue-800 transition inline-flex items-center"
-        >
-          Voir plus
-          <svg
-            class="w-4 h-4 ml-2"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </a>
-      </div>
-      <!-- ============================================== -->
     </div>
   </div>
 </article>
