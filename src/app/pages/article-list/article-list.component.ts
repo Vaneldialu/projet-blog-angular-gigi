@@ -12,24 +12,16 @@ import { LastArticleComponent } from "../last-article/last-article.component";
 
 @Component({
   selector: 'app-article-list',
-<<<<<<< HEAD
   imports: [ArticleComponent, NgFor, RouterLink, NgForOf, NgClass, ArtcileVidComponent, LastArticleComponent],
-=======
-  imports: [ArticleComponent, NgFor, RouterLink, NgForOf, NgClass,ArtcileVidComponent, NgIf],
->>>>>>> cec8433d58a432a5910ad1e7131fa5f5295b4b39
   templateUrl: './article-list.component.html',
   standalone: true,
   styleUrl: './article-list.component.css',
 })
 export class ArticleListComponent {
-<<<<<<< HEAD
   onRefreshPage() {
     this.getAll();
   }
   articles!: ArticleApi[];
-=======
-  articles: ArticleApi[] = []; // <- éviter le ! ici
->>>>>>> cec8433d58a432a5910ad1e7131fa5f5295b4b39
   service: ArticleService = inject(ArticleService);
   links?: Links;
   meta?: Meta;
@@ -50,16 +42,13 @@ export class ArticleListComponent {
       this.articles = reponse.data;
       this.links = reponse.links;
       this.meta = reponse.meta;
-<<<<<<< HEAD
       console.log("reponse:",this.articles);
       
-=======
       this.isLoading = false; // <- Arrêter le loader
       console.log("reponse:", reponse);
     }).catch((error) => {
       console.error("Erreur lors du chargement des articles:", error);
-      this.isLoading = false; // <- Assurer l'arrêt même en cas d'erreur
->>>>>>> cec8433d58a432a5910ad1e7131fa5f5295b4b39
+      this.isLoading = false; // <- Assurer l'arrêt même en cas d'erreu
     });
   }
 
