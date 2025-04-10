@@ -74,9 +74,9 @@ export class EditArticleComponent {
       photo: this.formData.value.photo ?? '',
       content: this.formData.value.content ?? '',
       categories: this.formData.value.categories ?? [],
-      tags: this.formData.value.tags ?? []
+      tags: this.formData.value.tags ?? [],
     });
-    alert('Article modifié');
+    alert('Kitokos alors');
     this.router.navigate(['/articles']);
   }
 }

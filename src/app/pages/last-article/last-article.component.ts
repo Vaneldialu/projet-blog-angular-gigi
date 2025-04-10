@@ -8,32 +8,29 @@ import { ArticleService } from '../../services/article.service';
   selector: 'app-last-article',
   imports: [NgFor, RouterLink, RouterModule],
   templateUrl: './last-article.component.html',
-  styleUrl: './last-article.component.css'
+  styleUrl: './last-article.component.css',
 })
 export class LastArticleComponent implements OnInit {
   articles: ArticleApi[] = [];
-  
 
   constructor(private articleService: ArticleService) {}
 
   ngOnInit() {
-    this.loadThreeArticles();
+    // this.loadThreeArticles();
   }
-  onRefreshPage() {
-    this.loadThreeArticles();
-  }
+  // onRefreshPage() {
+  //   this.loadThreeArticles();
+  // }
 
-  async loadThreeArticles(): Promise<void> {
-    try {
-      this.articles = await this.articleService.getTroisArticle();
-    } catch (error) {
-      console.error('Error loading articles:', error);
-    }
-  }
+  // async loadThreeArticles(): Promise<void> {
+  //   try {
+  //     this.articles = await this.articleService.getTroisArticle();
+  //   } catch (error) {
+  //     console.error('Error loading articles:', error);
+  //   }
+  // }
 
   currentYear = new Date().getFullYear();
-
-
 
   // loadThreeArticles() {
   //   this.articleService.getTroisArticles().then((reponse) => {
