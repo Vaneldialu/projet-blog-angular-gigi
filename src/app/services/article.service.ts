@@ -11,8 +11,7 @@ export class ArticleService {
   articles: ArticleApi[] = [];
   comments: Comment[] = [];
 
-  //url = inject(BASE_URL);
-  url = "http://127.0.0.1:8000"
+  url = inject(BASE_URL);
 
   //avec resource en collection
   async getAll(link?: string) {
@@ -56,7 +55,7 @@ export class ArticleService {
 
   
   async likeArticle(data: { articleId: number }) {
-    console.log(data);
+    console.log(localStorage.getItem('token'));
     return fetch(`${this.url}/api/articles/${data.articleId}/likes`, {
       method: 'POST',
       headers: {

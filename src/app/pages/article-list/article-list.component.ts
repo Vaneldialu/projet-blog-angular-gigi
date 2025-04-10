@@ -36,7 +36,7 @@ export class ArticleListComponent {
   }
 
   getAll(link?: string) {
-    this.isLoading = true; // <- Démarrer le loader
+    // this.isLoading = true; // <- Démarrer le loader
 
     this.service.getAll(link).then((reponse) => {
       this.articles = reponse.data;
