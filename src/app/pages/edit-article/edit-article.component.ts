@@ -76,5 +76,7 @@ export class EditArticleComponent {
       categories: this.formData.value.categories ?? [],
       tags: this.formData.value.tags ?? []
     });
+    alert('Article modifié');
+    this.router.navigate(['/articles']);
   }
 }
