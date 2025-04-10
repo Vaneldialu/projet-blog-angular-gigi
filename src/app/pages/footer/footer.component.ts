@@ -8,7 +8,7 @@ import { NgFor } from '@angular/common';
   selector: 'app-footer',
   imports: [RouterLink],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  styleUrl: './footer.component.css',
 })
 export class FooterComponent implements OnInit {
   articles: ArticleApi[] = [];
@@ -16,16 +16,16 @@ export class FooterComponent implements OnInit {
   constructor(private articleService: ArticleService) {}
 
   ngOnInit(): void {
-    this.loadThreeArticles();
+    // this.loadThreeArticles();
   }
 
-  async loadThreeArticles(): Promise<void> {
-    try {
-      this.articles = await this.articleService.getTroisArticle();
-    } catch (error) {
-      console.error('Error loading articles:', error);
-    }
-  }
+  // async loadThreeArticles(): Promise<void> {
+  //   try {
+  //     this.articles = await this.articleService.getTroisArticle();
+  //   } catch (error) {
+  //     console.error('Error loading articles:', error);
+  //   }
+  // }
 
   currentYear = new Date().getFullYear();
 }

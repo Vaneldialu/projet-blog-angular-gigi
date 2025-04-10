@@ -1,10 +1,12 @@
-<br><br><br><br><br>
+<br /><br /><br /><br /><br />
 <div>
   <!-- En-tête -->
   <div *ngIf="isConnected" class="flex justify-between items-center pt-4">
     <h1 class="text-3xl font-bold underline">Liste Articles</h1>
-    <a [routerLink]="['/create-article']"
-       class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-red-700">
+    <a
+      [routerLink]="['/create-article']"
+      class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-red-700"
+    >
       Ajouter un article
     </a>
   </div>
@@ -13,14 +15,18 @@
     <h1 class="text-3xl font-bold underline">Liste Articles</h1>
   </div>
 
-  <br><br>
+  <br /><br />
 
   <!-- Loader -->
   <div *ngIf="isLoading" class="text-center mt-10">
     <div role="status">
-      <svg aria-hidden="true"
-           class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
-           viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        aria-hidden="true"
+        class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+        viewBox="0 0 100 101"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <!-- SVG paths... -->
       </svg>
       <span class="sr-only">Loading...</span>
@@ -28,16 +34,23 @@
   </div>
 
   <!-- Liste des articles -->
-  <div *ngIf="!isLoading && articles.length > 0"
-       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-    <app-article *ngFor="let article of articles"
-                 [article]="article"
-                 (refreshPage)="onRefreshPage()">
+  <div
+    *ngIf="!isLoading && articles.length > 0"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4"
+  >
+    <app-article
+      *ngFor="let article of articles"
+      [article]="article"
+      (refreshPage)="onRefreshPage()"
+    >
     </app-article>
   </div>
 
   <!-- Message aucun article -->
-  <div *ngIf="!isLoading && articles.length === 0" class="text-center mt-10 text-gray-500">
+  <div
+    *ngIf="!isLoading && articles.length === 0"
+    class="text-center mt-10 text-gray-500"
+  >
     <p>Aucun article disponible pour le moment.</p>
   </div>
 </div>
@@ -53,16 +66,18 @@
 </div> -->
 
 <!-- Pagination -->
- <br><br><br>
+<br /><br /><br />
 <nav aria-label="Page navigation example" class="flex justify-center mt-5">
   <ul class="inline-flex -space-x-px text-base h-10">
     <li *ngFor="let link of meta?.links; let first = first; let last = last">
-      <button (click)="pagine(link.url)"
-              [ngClass]="{ 'rounded-e-lg': last, 'rounded-s-lg': first }"
-              class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 border bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-        {{ link.label }}
-      </button>
+      <button
+        (click)="pagine(link.url)"
+        [ngClass]="{ 'rounded-e-lg': last, 'rounded-s-lg': first }"
+        [innerHTML]="link.label"
+        class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 border bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+      ></button>
     </li>
   </ul>
 </nav>
-<br><br><br><br>
+
+<br /><br />
