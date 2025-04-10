@@ -115,11 +115,20 @@ export class ArticleService {
 
     return await response.json();
   }
-  async getFiveArticle(): Promise<ArticleApi[]>{
-    const response = await fetch(`${this.url}/api/getlatestfivearticles`)
-    const json= await response.json();
-    console.log(json.data);
-    return json.data;
-  }
+  
+  
 
-}
+
+  async getTroisArticle(): Promise<ArticleApi[]> {
+    return fetch(`${this.url}/api/getlatesttreearticles`)
+      .then(response => {
+        if (!response.ok) throw new Error('Erreur réseau');
+        return response.json();
+      })
+      .then(data => data.data) // Même traitement que getAll
+      .catch(err => {
+        console.error('Erreur:', err);
+        return [];
+      });
+  }
+  }

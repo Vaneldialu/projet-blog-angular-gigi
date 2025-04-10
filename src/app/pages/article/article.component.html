@@ -60,8 +60,40 @@
         </div>
       </div>
 
-      <!-- ACTIONS -->
-      <div *ngIf="isConnected && !isAuthor" class="flex gap-2 mt-4">
+      <!-- CONTENU -->
+      <p class="mb-4 text-sm text-gray-700 line-clamp-3 break-words">
+        {{ article.content }}
+      </p>
+
+      <!-- AUTEUR + DATE -->
+      <div class="flex items-center space-x-2 text-sm text-gray-500 mb-4">
+        <img
+          [src]="'https://ui-avatars.com/api/?name='"
+          class="w-6 h-6 rounded-full"
+        />
+        @if (!article.auteur) {
+          <span></span>
+        }@else {
+          <span>{{ article.auteur.name }}</span>
+        }
+        <span>•</span>
+        <span>{{ article.date_creation }}</span>
+      </div>
+
+      <!-- VUES & COMMENTAIRES -->
+      <div class="flex justify-between text-xs text-gray-500 mb-4">
+        <p>{{ article.nbr_vue }} vue(s)</p>
+        <p>{{ article.nbr_comment }} commentaire(s)</p>
+      </div>
+
+
+  
+      <!--  si l'utilisateur est connecté et n’est pas l’auteur de l’article-->
+      <div
+        *ngIf="isConnected && !isAuthor"
+        class="flex flex-wrap items-center gap-2"
+      >
+
         <button
           (click)="onLike()"
           type="button"

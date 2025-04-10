@@ -6,10 +6,20 @@ import { ArticleApi } from '../../models/article-api';
 import { RouterLink } from '@angular/router';
 import { Links } from '../../models/links';
 import { Meta } from '../../models/meta';
+<<<<<<< HEAD
 
 @Component({
   selector: 'app-article-list',
   imports: [ArticleComponent, NgFor, RouterLink, NgForOf, NgClass, NgIf],
+=======
+import { VideoComponent } from '../article-video/video.component';
+import { ArtcileVidComponent } from "../artcile-vid/artcile-vid.component";
+import { LastArticleComponent } from "../last-article/last-article.component";
+
+@Component({
+  selector: 'app-article-list',
+  imports: [ArticleComponent, NgFor, RouterLink, NgForOf, NgClass, ArtcileVidComponent, NgIf, LastArticleComponent],
+>>>>>>> c000d6c ( ajout d un composant pour l affichage des trois derniers articles crées)
   templateUrl: './article-list.component.html',
   standalone: true,
   styleUrl: './article-list.component.css',
