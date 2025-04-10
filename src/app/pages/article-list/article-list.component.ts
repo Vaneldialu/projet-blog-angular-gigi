@@ -6,9 +6,6 @@ import { ArticleApi } from '../../models/article-api';
 import { RouterLink } from '@angular/router';
 import { Links } from '../../models/links';
 import { Meta } from '../../models/meta';
-import { VideoComponent } from '../article-video/video.component';
-import { ArtcileVidComponent } from '../artcile-vid/artcile-vid.component';
-import { LastArticleComponent } from '../last-article/last-article.component';
 
 @Component({
   selector: 'app-article-list',
@@ -18,15 +15,16 @@ import { LastArticleComponent } from '../last-article/last-article.component';
   styleUrl: './article-list.component.css',
 })
 export class ArticleListComponent {
-  onRefreshPage() {
-    this.getAll();
-  }
-  articles!: ArticleApi[];
+  articles: ArticleApi[] = []; // <- éviter le ! ici
   service: ArticleService = inject(ArticleService);
   links?: Links;
   meta?: Meta;
   isConnected: boolean = false;
   isLoading: boolean = true; // <- Ajout
+
+  onRefreshPage() {
+    this.getAll();
+  }
 
   ngOnInit() {
     this.isConnected = !!localStorage.getItem('token');
@@ -42,14 +40,12 @@ export class ArticleListComponent {
         this.articles = reponse.data;
         this.links = reponse.links;
         this.meta = reponse.meta;
-        console.log('reponse:', this.articles);
-
         this.isLoading = false; // <- Arrêter le loader
         console.log('reponse:', reponse);
       })
       .catch((error) => {
         console.error('Erreur lors du chargement des articles:', error);
-        this.isLoading = false; // <- Assurer l'arrêt même en cas d'erreu
+        this.isLoading = false; // <- Assurer l'arrêt même en cas d'erreur
       });
   }
 
