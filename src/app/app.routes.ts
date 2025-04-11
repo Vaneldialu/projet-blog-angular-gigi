@@ -14,6 +14,7 @@ import { EditArticleComponent } from './pages/edit-article/edit-article.componen
 import { HomeComponent } from './pages/home/home.component';
 import { ArticleByCategorieComponent } from './pages/article-by-categorie/article-by-categorie.component';
 import { ArticleByTagComponent } from './pages/article-by-tag/article-by-tag.component';
+import { ProfilComponent } from './pages/profil/profil.component';
 
 export const routes: Routes = [
   {
@@ -71,5 +72,9 @@ export const routes: Routes = [
   {
     path : 'tags/:id',
     component : ArticleByTagComponent
+  },
+  {
+    path:'profile',
+    component:ProfilComponent
   }
 ];
