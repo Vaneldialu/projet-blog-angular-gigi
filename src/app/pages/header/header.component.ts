@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ArticleListComponent } from '../article-list/article-list.component';
 import { RouterLink } from '@angular/router';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { NgIf } from '@angular/common';
 
@@ -9,20 +9,20 @@ import { NgIf } from '@angular/common';
   selector: 'app-header',
   imports: [RouterLink, NgIf],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  isConnected:boolean= false
-  name!: string
-  email!: string
-  route:Router = inject(Router)
-  service:UserService= inject(UserService)
+  isConnected: boolean = false;
+  name!: string;
+  email!: string;
+  route: Router = inject(Router);
+  service: UserService = inject(UserService);
 
-  ngOnInit(){
-    if(localStorage.getItem('token')){
-      this.isConnected = true
-      this.name = localStorage.getItem('name')??""
-      this.email = localStorage.getItem('email')??""
+  ngOnInit() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      this.isConnected = !!localStorage.getItem('token');
+      this.name = localStorage.getItem('name') || '';
+      this.email = localStorage.getItem('email') || '';
     }
   }
 
@@ -30,7 +30,7 @@ export class HeaderComponent {
     localStorage.clear();
     this.isConnected = true;
     this.route.navigate(['/']).then(() => {
-        window.location.reload();
-    });
-  }
+      window.location.reload();
+    });
+  }
 }

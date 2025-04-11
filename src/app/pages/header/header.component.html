@@ -1,70 +1,98 @@
 <header class="w-full bg-white shadow-md">
   <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
-    
+    <!-- Logo -->
     <div class="flex items-center">
-      <img 
-        src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/21_Angular_logo_logos-512.png" 
-        alt="Angular Logo" 
+      <img
+        src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/21_Angular_logo_logos-512.png"
+        alt="Angular Logo"
         class="w-14 h-14"
-      >
+      />
     </div>
 
-    <nav *ngIf="isConnected">
-      <ul class="flex space-x-8">
+    <!-- Navigation -->
+    <ul class="flex items-center space-x-6">
+      <li>
+        <a
+          [routerLink]="['']"
+          class="text-gray-700 hover:text-red-500 transition font-medium"
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          [routerLink]="['/articles']"
+          class="text-gray-700 hover:text-red-500 transition font-medium"
+        >
+          Articles
+        </a>
+      </li>
+
+      <li *ngIf="isConnected">
+        <a
+          [routerLink]="['/categories']"
+          class="text-gray-700 hover:text-red-500 transition font-medium"
+        >
+          Catégories
+        </a>
+      </li>
+      <li *ngIf="isConnected">
+        <a
+          [routerLink]="['/tags']"
+          class="text-gray-700 hover:text-red-500 transition font-medium"
+        >
+          Tags
+        </a>
+      </li>
+
+      <!-- Si connecté -->
+      <ng-container *ngIf="isConnected; else guestLinks">
         <li>
-          <a [routerLink]="['']" class="text-gray-700 hover:text-red-500 transition font-medium">
-            Home
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['/articles']" class="text-gray-700 hover:text-red-500 transition font-medium">
-            Articles
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['/categories']" class="text-gray-700 hover:text-red-500 transition font-medium">
-            Catégories
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['/tags']" class="text-gray-700 hover:text-red-500 transition font-medium">
-            Tags
-          </a>
-        </li>
-        <li>
-          <a (click)="deconnexion()" class="text-white bg-blue-700  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-red-600 focus:outline-none dark:focus:ring-blue-800">
+          <a
+            (click)="deconnexion()"
+            class="text-white hover:bg-red-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-red-600 focus:outline-none dark:focus:ring-blue-800 cursor-pointer"
+          >
             Déconnexion
           </a>
         </li>
         <li>
-          <button class="text-gray-700 hover:text-red-500 transition font-medium">{{name}}</button>
+          <div class="relative group">
+            <a
+              [routerLink]="['/profile']"
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-700 hover:bg-red-500 hover:text-white transition text-lg font-bold"
+              title="Mon profil"
+            >
+              {{ name.charAt(0).toUpperCase() }}
+            </a>
+            <div
+              class="absolute top-12 left-1/2 -translate-x-1/2 bg-white shadow-lg rounded-xl px-4 py-2 text-sm text-gray-700 opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none group-hover:pointer-events-auto"
+            >
+              {{ name }}
+            </div>
+          </div>
+          
         </li>
-      </ul>
-    </nav>
-    <nav *ngIf="!isConnected">
-      <ul class="flex space-x-8">
+      </ng-container>
+
+      <!-- Si pas connecté -->
+      <ng-template #guestLinks>
         <li>
-          <a [routerLink]="['']" class="text-gray-700 hover:text-red-500 transition font-medium">
-            Home
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['/articles']" class="text-gray-700 hover:text-red-500 transition font-medium">
-            Articles
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['/login']" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+          <a
+            [routerLink]="['/login']"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
             Login
           </a>
         </li>
         <li>
-          <a [routerLink]="['/register']" class="text-white bg-blue-700  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-red-600 focus:outline-none dark:focus:ring-blue-800">
+          <a
+            [routerLink]="['/register']"
+            class="text-white bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-red-600 focus:outline-none dark:focus:ring-blue-800"
+          >
             Register
           </a>
         </li>
-      </ul>
-    </nav>
-
+      </ng-template>
+    </ul>
   </div>
 </header>
