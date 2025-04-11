@@ -27,7 +27,6 @@ export class ArticleListComponent {
   }
 
   ngOnInit() {
-    this.isConnected = !!localStorage.getItem('token');
     this.getAll();
   }
 
