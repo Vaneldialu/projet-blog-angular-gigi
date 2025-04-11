@@ -49,7 +49,7 @@ export class UserService {
   }
 
   async getInfoUser(): Promise<User> {
-    let data = await fetch('http://127.0.0.1:8000/api/user', {
+    let data = await fetch(`${this.url}/api/user`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + localStorage.getItem('token')
