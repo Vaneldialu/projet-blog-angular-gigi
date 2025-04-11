@@ -28,7 +28,7 @@ export class ArticleComponent {
     this.isConnected = !!localStorage.getItem('token');
     this.userId = Number(localStorage.getItem('userId'));
 
-  if (this.isConnected && this.article?.auteur.id) {
+  if (this.isConnected && this.article.auteur.id) {
     this.isAuthor = this.userId === this.article.auteur.id;
   }
   }
