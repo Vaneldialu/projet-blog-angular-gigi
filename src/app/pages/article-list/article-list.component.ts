@@ -27,9 +27,13 @@ export class ArticleListComponent {
   }
 
   ngOnInit() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      this.isConnected = !!localStorage.getItem('token');
+    }
     this.getAll();
   }
 
+  
   getAll(link?: string) {
     this.isLoading = true; // <- Démarrer le loader
 
