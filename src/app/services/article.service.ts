@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { ArticleApi } from '../models/article-api';
 import { log } from 'node:console';
 import { Comment } from '../models/comment';
+import { promises } from 'node:dns';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,7 @@ export class ArticleService {
   articles: ArticleApi[] = [];
   comments: Comment[] = [];
 
-  //url = inject(BASE_URL);
-  url = 'http://127.0.0.1:8000';
+  url = inject(BASE_URL);
 
   //avec resource en collection
   async getAll(link?: string) {
@@ -30,7 +30,6 @@ export class ArticleService {
       .then((data) => {
         return data;
         // return data.data;
-        return data.data;
       })
       .catch((err) => {
         console.log(err);
@@ -116,4 +115,11 @@ export class ArticleService {
 
     return await response.json();
   }
+  async getFiveArticle(): Promise<ArticleApi[]>{
+    const response = await fetch(`${this.url}/api/getlatestfivearticles`)
+    const json= await response.json();
+    console.log(json.data);
+    return json.data;
+  }
+
 }
